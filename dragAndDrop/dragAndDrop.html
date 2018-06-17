@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <!--import Bootstrap-->
+    <link rel="stylesheet" href="../_lib/bootstrap.css">
+    <!--import AngularJS-->
+    <script type="text/javascript" src="../_lib/angular.min.js"></script>
+    <!--import modulo ngAnimate-->
+    <script type="text/javascript" src="../_lib/angular-animate.js"></script>
+
+
+    <script type="text/javascript" src="./lib/angular-drag-and-drop-lists.js"></script>
+
+
+    <script type="text/javascript" src="./controller/dragAndDropController.js"></script>
+    <link rel="stylesheet" href="./lib/dragAndDrop.css">
+
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-controller="dragAndDropController">
+
+<div class="dragDrogNg">
+    <div ng-repeat="list in models" class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title ng-binding">Lista {{list.listName}}</h3>
+            </div>
+            <div class="panel-body ng-scope">
+                <ul dnd-list dnd-drop="onDrop(list, item, index)">
+                    <li ng-repeat="item in list.items"
+                        dnd-draggable="getSelectedItemsIncluding(list, item)"
+                        dnd-dragstart="onDragstart(list, event)"
+                        dnd-moved="onMoved(list)"
+                        dnd-dragend="list.dragging = false"
+                        dnd-selected="item.selected = !item.selected"
+                        ng-class="{'selected': item.selected}"
+                        ng-hide="list.dragging && item.selected"
+                    >
+                        {{item.label}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
