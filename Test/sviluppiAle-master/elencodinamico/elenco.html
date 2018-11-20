@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- import Angular -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+  <!-- import Bootstrap -->
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+  <!-- import W3S CSS -->
+  <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+  <!-- import Controller -->
+  <script type="text/javascript" src="elencoController.js"></script>
+</head>
+
+<body>
+
+<div ng-app="myList" ng-cloak ng-controller="elencoController" class="w3-card-2 w3-margin" style="max-width:600px;">
+  <header class="w3-container w3-light-grey w3-padding-16">
+    <h3>La mia Lista</h3>
+  </header>
+  <ul class="w3-ul">
+    <li ng-repeat="pr in prodotti" class="w3-padding-16">{{pr.nome}} (quantit&aacute; {{pr.quantita}})<span ng-click="togliElemento($index)" style="cursor:pointer;" class="w3-right w3-margin-right">×</span></li>
+  </ul>
+  <div class="w3-container w3-light-grey w3-padding-16">
+    <div class="w3-row w3-margin-top">
+      <div class="w3-col s10">
+        <input type="text" placeholder="aggiungi un elemento" ng-model="nuovoElemento.nome" class="w3-input w3-border w3-padding">
+        <input type="number" placeholder="quantit&aacute;" ng-model="nuovoElemento.quantita" class="w3-input w3-border w3-padding">
+      </div>
+      <div class="w3-col s2">
+        <button ng-click="aggiungiElemento()" class="w3-btn w3-padding w3-green">Aggiungi</button>
+      </div>
+    </div>
+    <p class="w3-padding-left w3-text-red">{{errortext}}</p>
+  </div>
+</div>
+
+</body>
+</html>

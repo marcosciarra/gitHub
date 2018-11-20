@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- import bootstrap -->
+    <link href="../../grafica/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <!--bootstrap 3 per paginatore-->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- import customCSS -->
+    <link href="../../grafica/css/customCSS.css" rel="stylesheet" type="text/css" media="all">
+    <!-- import angularjs -->
+    <script type="text/javascript" src="../../lib/angularlib/angular.min.js"></script>
+    <script type="text/javascript" src="../../lib/angularlib/angular-animate.js"></script>
+    <script type="text/javascript" src="../../lib/angularlib/angular-sanitize.js"></script>
+    <!-- import controller -->
+    <script type="text/javascript" src="controller/elencoClientiController.js"></script>
+    <!--import bootstrap pagination -->
+    <script type="text/javascript" src="../../grafica/bootstrap/js/ui-bootstrap.js"></script>
+    <!--sweetalert-->
+    <script type="text/javascript"  src="../../lib/sweetalert/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../lib/sweetalert/sweetalert.min.css">
+    <!--functions-->
+    <script type="text/javascript" src="../../functions/functionCF.js"></script>
+    <script type="text/javascript" src="../../functions/functionPIVA.js"></script>
+    <script type="text/javascript" src="../../functions/functionEmail.js"></script>
+    <script type="text/javascript" src="../../functions/functionDate.js"></script>
+    <script type="text/javascript" src="../../functions/functionUrl.js"></script>
+    <!-- fontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- external _lib (servono per aprire chiudere i panel)-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Elenco clienti</title>
+</head>
+
+<body ng-app="dscApp" ng-controller="elencoClientiController">
+
+<div id="containerGlobal" class="card">
+    <!-- HEADER GLOBAL-->
+    <div class="card-header text-center text-white bg-dark">
+        <strong class="text-uppercase">Elenco Clienti</strong>
+    </div>
+    <!--BODY GLOBAL-->
+    <div class="card-body bg-light padding10">
+
+        <table class="table table-sm table-hover marginB0 table-responsive-sm">
+            <thead>
+                <tr>
+                    <th class="padding3">
+                        <div class="input-group">
+                            <span class="input-group-addon input-group-sm pointer" ng-click="sortType = 'ragioneSociale'; sortReverse = !sortReverse;">
+                                <i class="fa fa-exchange fa-rotate-90" aria-hidden="true"></i>
+                            </span>
+                            <input type="text" class="form-control form-control-sm paddingLR10 customPlaceholder" placeholder="Ragione sociale"
+                                   ng-model="search.P_NOME">
+                        </div>
+                    </th>
+                    <th>Cellulare</th>
+                    <th>Telefono</th>
+                    <th class="padding3">
+                        <div class="input-group">
+                            <span class="input-group-addon input-group-sm pointer" ng-click="sortType = 'citta'; sortReverse = !sortReverse;">
+                                <i class="fa fa-exchange fa-rotate-90" aria-hidden="true"></i>
+                            </span>
+                            <input type="text" class="form-control form-control-sm paddingLR10 customPlaceholder" placeholder="Città"
+                                   ng-model="search.citta">
+                        </div>
+                    </th>
+                    <th>Tipo</th>
+                    <th>Sconto</th>
+                    <th>Cliente di</th>
+                    <th>Filiale</th>
+                    <th>E-mail</th>
+                    <th class="text-center">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="c in elencoClienti.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter:search | orderBy:sortType:sortReverse">
+                    <td>{{c.P_NOME}}</td>
+                    <td>{{c.P_CELL}}</td>
+                    <td>
+                        <span ng-show="c.P_CONTO != c.P_TELEFONO">{{c.P_TELEFONO}}</span>
+                    </td>
+                    <td>{{c.P_CITTA}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{c.P_EMAIL}}</td>
+                    <td class="text-center">
+                        <i class="fa fa-pencil-square-o fa-lg pointer" aria-hidden="true" title="Modifica cliente"></i>
+                        &nbsp;
+                        <i class="fa fa-trash-o fa-lg pointer" aria-hidden="true" title="Elimina cliente"></i>
+                        &nbsp;
+                        <i class="fa fa-motorcycle fa-lg pointer" aria-hidden="true" title="Visualizza conducenti"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
+        </div>
+        <div id="paginatore" class="text-center">
+            <span>Visualizza</span>
+            <select ng-model="itemsPerPage" ng-options="x.valore as x.descrizione for x in selectElementiPerPagina" ng-change="setItemsPerPage()"></select>
+            <span>elementi per pagina.</span>
+            <span>Pagina: {{currentPage}} / {{numPages}}</span>
+        </div>
+
+    </div>
+</div><!-- close containerGlobal-->
+
+</body>
+</html>

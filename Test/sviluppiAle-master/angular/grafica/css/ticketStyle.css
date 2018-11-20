@@ -1,0 +1,140 @@
+.background{
+    background-color: #d0e9c6;
+}
+
+.backgroundBody{
+    background-color: #C0C0C0;
+}
+
+.margineAlto10{
+    margin-top: 10px;
+}
+
+.margineAlto30{
+    margin-top: 30px;
+}
+
+.margineAlto40{
+    margin-top: 40px;
+}
+
+.margineAlto100{
+    margin-top: 100px;
+}
+
+.margineAltoMeno20{
+    margin-top: -20px;
+}
+
+.margineAltoMeno35{
+    margin-top: -35px;
+}
+
+.margineBasso10{
+    margin-bottom: 10px;
+}
+
+.panelCustom{
+    border: 1px solid;
+    background-color: #F7F7F7;
+    border-color: #5F5F5F !important;
+    padding: 0px !important;
+}
+
+.panleHeadingCustom {
+    color: #fff !important;
+    background-color: #C0C0C0 !important;
+    border-color: #5F5F5F !important;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+}
+
+.btn-custom {
+    color: #000;
+    background-color: #C0C0C0;
+    border: 1px solid #5F5F5F !important;
+}
+
+.btn-custom:hover,
+.btn-custom:focus,
+.btn-custom.focus,
+.btn-custom:active,
+.btn-custom.active,
+.open > .dropdown-toggle.btn-custom {
+    color: #fff;
+    background-color: #808080;
+    border-color: #5F5F5F;
+}
+.btn-custom:active,
+.btn-custom.active,
+.open > .dropdown-toggle.btn-custom {
+    background-image: none;
+}
+.btn-custom.disabled,
+.btn-custom[disabled],
+fieldset[disabled] .btn-custom,
+.btn-custom.disabled:hover,
+.btn-custom[disabled]:hover,
+fieldset[disabled] .btn-custom:hover,
+.btn-custom.disabled:focus,
+.btn-custom[disabled]:focus,
+fieldset[disabled] .btn-custom:focus,
+.btn-custom.disabled.focus,
+.btn-custom[disabled].focus,
+fieldset[disabled] .btn-custom.focus,
+.btn-custom.disabled:active,
+.btn-custom[disabled]:active,
+fieldset[disabled] .btn-custom:active,
+.btn-custom.disabled.active,
+.btn-custom[disabled].active,
+fieldset[disabled] .btn-custom.active {
+    background-color: #C0C0C0;
+    border-color: #5F5F5F;
+}
+.btn-custom .badge {
+    color: #C0C0C0;
+    background-color: #fff;
+}
+
+.btnLoginPosition{
+    float: right;
+    margin-top: 10px;
+}
+
+.btnNewTicket{
+    margin: 2% 2% 2% 2%;
+}
+
+.btnRight{
+    float: right;
+}
+
+.copyright {
+    text-align: center;
+    padding: 1em 0;
+    position:relative;
+    bottom:0;
+}
+
+.copyright p {
+    font-size: 1em;
+    color: #000;
+}
+
+.selectpicker{
+    width: 100%;
+    height: 34px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.customHeader{
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.customHeader:hover{
+    transform: scale(1.1);
+}
+

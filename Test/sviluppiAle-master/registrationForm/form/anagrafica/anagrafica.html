@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- import bootstrap -->
+    <link href="../../grafica/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <!-- import customCSS -->
+    <link href="../../grafica/css/customCSS.css" rel="stylesheet" type="text/css" media="all">
+    <!-- import angularjs -->
+    <script type="text/javascript" src="../../lib/angularlib/angular.min.js"></script>
+    <script type="text/javascript" src="../../lib/angularlib/angular-animate.js"></script>
+    <!-- import controller -->
+    <script type="text/javascript" src="controller/anagraficaController.js"></script>
+    <script type="text/javascript" src="controller/strutturaAnagrafica.js"></script>
+    <!--sweetalert-->
+    <script type="text/javascript"  src="../../lib/sweetalert/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../lib/sweetalert/sweetalert.min.css">
+    <!--functions-->
+    <script type="text/javascript" src="../../functions/functionCF.js"></script>
+    <script type="text/javascript" src="../../functions/functionPIVA.js"></script>
+    <script type="text/javascript" src="../../functions/functionEmail.js"></script>
+    <script type="text/javascript" src="../../functions/functionDate.js"></script>
+    <script type="text/javascript" src="../../functions/functionUrl.js"></script>
+    <!-- fontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- external _lib (servono per aprire chiudere i panel)-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Anagrafica</title>
+</head>
+
+<body ng-app="dscApp" ng-controller="anagraficaController">
+
+<div id="containerGlobal" class="card">
+    <!-- HEADER GLOBAL-->
+    <div class="card-header text-center text-white bg-dark">
+        <strong class="text-uppercase">Registrazione Nuovo Cliente</strong>
+    </div>
+    <!--BODY GLOBAL-->
+    <div class="card-body bg-light padding10">
+
+        <!-- ======================================= DATI CLIENTE ================================================== -->
+
+        <div ng-include="'datiCliente.html'"></div>
+
+        <!-- ========================================= ALTRI DATI ================================================== -->
+
+        <div ng-include="'altriDati.html'"></div>
+
+        <!-- ======================================= DATI CONDUCENTE =============================================== -->
+
+        <div ng-include="'datiConducente.html'"></div>
+
+
+
+        <!-- ============================================ SALVA ==================================================== -->
+
+        <button type="button" class="col-2 offset-10 btn btn-dark" ng-disabled="!datiValidi" ng-click="salva()">Salva</button>
+
+    </div>
+</div><!-- close containerGlobal-->
+
+</body>
+</html>

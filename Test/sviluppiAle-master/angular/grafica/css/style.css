@@ -1,0 +1,52 @@
+#CambiaCss {
+    width: 10%;
+    margin-left: 90%;
+    float: left;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.selectorRed{
+    width: 33%;
+    padding: 1%;
+    height: 30px;
+    background-color: red;
+    float: left;
+    overflow: hidden;
+}
+.selectorBlue{
+    width: 33%;
+    padding: 1%;
+    height: 30px;
+    background-color: blue;
+    float: left;
+    overflow: hidden;
+}
+.selectorGreen{
+    width: 33%;
+    padding: 1%;
+    height: 30px;
+    background-color: green;
+    float: left;
+    overflow: hidden;
+}
+
+
+.rosso {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    color: white;
+}
+.blu {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    color: white;
+}
+.verde {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    color: white;
+}

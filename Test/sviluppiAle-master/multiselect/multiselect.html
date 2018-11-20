@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+    <!-- import bootstrap -->
+    <link href="lib/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- import angularjs -->
+    <script type="text/javascript" src="lib/angular.min.js"></script>
+    <!--import multiselect
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-dropdown-multiselect/1.11.8/angularjs-dropdown-multiselect.min.js"></script>-->
+    <script type="text/javascript" src="lib/angularjs-multiselect.js"></script>
+
+    <title>Multiselect Test</title>
+</head>
+
+<script>
+
+    var app = angular.module('myApp', ['angularjs-dropdown-multiselect']);
+    app.controller('myCtrl', function($scope) {
+
+
+        $scope.elementiSelezionati = [];
+
+        $scope.elementi = [{ID:1,CONDOMINIODEX:"SUPERCONDOMINIO  BARI 2032"},{ID:4,CONDOMINIODEX:"CONDOMINIO  MOSCOVA 24"}, {ID:5,CONDOMINIODEX:"CONDOMINIO BORSIERI 27"},{ID:6,CONDOMINIODEX:"CONDOMINIO  PELIZZA DA VOLPEDO 26"},
+                {ID:7,CONDOMINIODEX:"CONDOMINIO  PONTE VETERO 15"},{ID:8,CONDOMINIODEX:"CONDOMINIO CASTELLANZA 12"},{ID:10,CONDOMINIODEX:"CONDOMINIO  DE CHIRICO 57"},{ID:11,CONDOMINIODEX:"CONDOMINIO  MAFFEI 12"},
+                {ID:12,CONDOMINIODEX:"CONDOMINIO  UGO BETTI 175181"}, {ID:13,CONDOMINIODEX:"CONDOMINIO  CERTOSA 269"},{ID:14,CONDOMINIODEX:"CONDOMINIO  COMO 3"},{ID:15,CONDOMINIODEX:"CONDOMINIO  HERMADA 11"},
+                {ID:18,CONDOMINIODEX:"CONDOMINIO BERNA 116"},{ID:19,CONDOMINIODEX:"CONDOMINIO  GRECO 2"},{ID:20,CONDOMINIODEX:"CONDOMINIO LA FOPPA 5"},{ID:22,CONDOMINIODEX:"CONDOMINIO CLARA"},{ID:23,CONDOMINIODEX:"CONDOMINIO NUVOLONE 15"},
+                {ID:24,CONDOMINIODEX:"CONDOMINIO  GORANI 2A"},{ID:25,CONDOMINIODEX:"CONDOMINIO DURINI 14"},{ID:26,CONDOMINIODEX:"CONDOMINIO  MURATORI 53"},{ID:27,CONDOMINIODEX:"CONDOMINIO SOLFERINO 2931"},{ID:28,CONDOMINIODEX:"COND. ALBERTO DA GIUSSANO 2224"},
+                {ID:31,CONDOMINIODEX:"CONDOMINIO  PORTA NUOVA CORSO COMO"},{ID:32,CONDOMINIODEX:"CONDOMINIO  MASCAGNI 15"}, {ID:33,CONDOMINIODEX:"CONDOMINIO  PRATI 13"},
+                {ID:34,CONDOMINIODEX:"CONDOMINIO  TRAIANO 13"}, {ID:35,CONDOMINIODEX:"CONDOMINIO  ABRUZZI 64"}, {ID:36,CONDOMINIODEX:"CONDOMINIO  TESTI 60"}, {ID:37,CONDOMINIODEX:"CONDOMINIO PIERO DELLA FRANCESCA 8"},
+                {ID:38,CONDOMINIODEX:"CONDOMINIO PAGANO 48"}, {ID:39,CONDOMINIODEX:"CONDOMINIO CASA RUSTICI"}, {ID:40,CONDOMINIODEX:"CONDOMINIO  GIUSTI 40"}, {ID:41,CONDOMINIODEX:"CONDOMINIO COMPLESSO MONTE FALTERONA"},
+                {ID:42,CONDOMINIODEX:"CONDOMINIO  CONSERVATORIO 13"}, {ID:43,CONDOMINIODEX:"CONDOMINIO  SAN GOTTARDO 41"}, {ID:44,CONDOMINIODEX:"SUPERCONDOMINIO  BARI 2032 - CONDOMINI"}, {ID:45,CONDOMINIODEX:"CONDOMINIO  ALDOBRANDINI 12"},
+                {ID:46,CONDOMINIODEX:"CONDOMINIO  PREVIATI 21"}, {ID:47,CONDOMINIODEX:"CONDOMINIO  ALEARDI 1214"}, {ID:49,CONDOMINIODEX:"CONDOMINIO  BOX SORESINA 14"}, {ID:50,CONDOMINIODEX:"CONDOMINIO  ZAVATTARI LOTTO 1"},
+                {ID:51,CONDOMINIODEX:"CONDOMINIO  ZAVATTARI LOTTO 2"}, {ID:52,CONDOMINIODEX:"CONDOMINIO  ZAVATTARI LOTTO 3"}, {ID:53,CONDOMINIODEX:"CONDOMINIO  SFORZA 2125"}, {ID:54,CONDOMINIODEX:"CONDOMINIO  ZAVATTARI COMPLESSO"},
+                {ID:55,CONDOMINIODEX:"CONDOMINIO MAFFUCCI 50"}, {ID:56,CONDOMINIODEX:"CONDOMINIO  CANEVA 3"}, {ID:57,CONDOMINIODEX:"CONDOMINIO  MAGNOLIA"}, {ID:58,CONDOMINIODEX:"CONDOMINIO  SERENISSIMA"},
+                {ID:59,CONDOMINIODEX:"CONDOMINIO  MONTE CENERI 78"}, {ID:60,CONDOMINIODEX:"CONDOMINIO  AURIGA"}, {ID:61,CONDOMINIODEX:"CONDOMINIO MAGENTA 27"}, {ID:62,CONDOMINIODEX:"CONDOMINIO  LECCO 11"},
+                {ID:63,CONDOMINIODEX:"CONDOMINIO  BOX DEL MELLA 10"},{ID:64,CONDOMINIODEX:"CONDOMINIO  MONTE SANTO 5"}, {ID:65,CONDOMINIODEX:"CONDOMINIO  BOX COLLETTA 39"}, {ID:66,CONDOMINIODEX:"CONDOMINIO  MELZI D'ERIL 38"},
+                {ID:67,CONDOMINIODEX:"CONDOMINIO  ZENDRINI 20"}, {ID:68,CONDOMINIODEX:"CONDOMINIO  RANDACCIO 8"}, {ID:69,CONDOMINIODEX:"CONDOMINIO  UGUCCIONE DA PISA 6"}, {ID:70,CONDOMINIODEX:"CONDOMINIO CALVI 34"},
+                {ID:71,CONDOMINIODEX:"CONDOMINIO  BERTINI 11"}, {ID:72,CONDOMINIODEX:"CONDOMINIO MONTE CERVINO 75 A"}, {ID:73,CONDOMINIODEX:"CONDOMINIO  AMBASCIATORI"}, {ID:74,CONDOMINIODEX:"CONDOMINIO  OSOPPO 13"},
+                {ID:75,CONDOMINIODEX:"CONDOMINIO  TERMOPILI 38"}, {ID:76,CONDOMINIODEX:"CONDOMINIO  SS TRINITA' 9"}, {ID:77,CONDOMINIODEX:"CONDOMINIO  LAGHETTO 35"}, {ID:78,CONDOMINIODEX:"CONDOMINIO  ROSMINI 9"},
+                {ID:79,CONDOMINIODEX:"CONDOMINIO DONNA PRASSEDE 12"}, {ID:80,CONDOMINIODEX:"CONDOMINIO FOSCARI 5"}, {ID:81,CONDOMINIODEX:"SUPERCONDOMINIO ERCOLANO 3 - CENTRALE TERMICA"},
+                {ID:82,CONDOMINIODEX:"CONDOMINIO LAMPUGNANO 144"}, {ID:83,CONDOMINIODEX:"CONDOMINIO DE ALESSANDRI 9 "}, {ID:84,CONDOMINIODEX:"CONDOMINIO TURATI 29 "}, {ID:85,CONDOMINIODEX:"CONDOMINIO VENIERO 46"},
+                {ID:86,CONDOMINIODEX:"CONDOMINIO MARENCO 3 CIMAROSA 20"}, {ID:87,CONDOMINIODEX:"VIA BELISARIO 3"}, {ID:88,CONDOMINIODEX:"VIA FARSAGLIA 4"}, {ID:89,CONDOMINIODEX:"CONDOMINIO PRINCIPESSA CLOTILDE"},
+                {ID:90,CONDOMINIODEX:"CONDOMINIO PELIZZA DA VOLPEDO 8"}, {ID:91,CONDOMINIODEX:"CONDOMINIO BOEZIO 2"}, {ID:92,CONDOMINIODEX:"IL GRATTACIELO"}, {ID:95,CONDOMINIODEX:"CONDOMINIO ZAVATTARI"}];
+
+        $scope.settings = { enableSearch: true,
+                            showSelectAll: true,
+                            keyboardControls: true,
+                            scrollable: true,
+                            scrollableHeight: '500px',
+                            externalIdProp: '', //PERMETTE DI AGGIUNGERE ALL'ARRAY DEI SELEZIONATI TUTTO L'OGGETTO
+                            idProp: 'ID', //definisco i campi di cui è composto l'oggetto                
+                            displayProp: 'CONDOMINIODEX', //definisco i campi di cui è composto l'oggetto
+                            buttonClasses: 'btn'
+        };
+
+        $scope.customText = {buttonDefaultText: 'Condominii',
+                            checkAll: 'Seleziona tutti',
+                            uncheckAll: 'Deseleziona tutti',
+                            searchPlaceholder: 'Cerca..',
+                            dynamicButtonTextSuffix: 'tua mamma'
+        };
+
+    });
+
+
+</script>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+
+    <h3>MULTISELECT</h3>
+    <div ng-dropdown-multiselect="" options="elementi" selected-model="elementiSelezionati" extra-settings="settings" translation-texts="customText"></div>
+
+    <h3>ELEMENTI SELEZIONATI:</h3>
+    <table class="table table-responsive text-center">
+        <tr>
+            <th width="40%" class="text-center">OGGETTO</th>
+            <th width="30%" class="text-center">ID</th>
+            <th width="30%" class="text-center">DESCRIZIONE</th>
+        </tr>
+        <tr ng-repeat="es in elementiSelezionati">
+            <td width="40%">{{es}}</td>
+            <td width="30%">{{es.ID}}</td>
+            <td width="30%">{{es.CONDOMINIODEX}}</td>
+        </tr>
+    </table>
+
+</body>
+</html>
+
+
+

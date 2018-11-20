@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="demoApp" ng-controller="DemoCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>angular-clipboard demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--angularjs-->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <!--controller-->
+    <script src="controller.js"></script>
+    <!--angular-clipboard-->
+    <script src="angular-clipboard.js"></script>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body ng-app="demoApp">
+    <div ng-controller="DemoCtrl">
+
+        <h1>Click button to copy text to clipboard</h1>
+        <textarea ng-model="textToCopy" rows="5" cols="30"></textarea><br />
+        <button clipboard text="textToCopy" on-copied="success()" on-error="fail(err)">Copy</button>
+
+        <table>
+            <tr ng-repeat="c in contatti">
+                <td>{{c.nome}}</td>
+                <td>{{c.email}}</td>
+                <td><button clipboard text="c.email" on-copied="success()" on-error="fail(err)">Copy</button></td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+</html>

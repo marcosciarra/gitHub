@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--angularjs-->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <!--controller-->
+    <script src="controller.js"></script>
+    <!--ngclipboard-->
+    <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"></script>
+    <script src="ngclipboard.min.js"></script>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+
+<body ng-app="myApp">
+    <div ng-controller="testController">
+
+        <h3>TEST 1</h3>
+        <div id="test1" class="form-group form-inline">
+            <input class="form-control" id="foo" value="testo da copiare">
+            <button class="btn" ngclipboard data-clipboard-target="#foo">copia</button>
+        </div>
+
+        <h3>TEST 2</h3>
+        <div id="test2">
+            <table class="table table-stripped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CONDOMINIO</th>
+                        <th>P.IVA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="e in elencoNomePiva">
+                        <td>{{e.ID}}</td>
+                        <td>{{e.CONDOMINIO}}</td>
+                        <td>
+                            <span id="value{{$index}}">{{e.PIVA}}</span>
+                            <button class="btn" ngclipboard data-clipboard-target="#value{{$index}}">
+                                copy
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>TEST 3</h3>
+        <div id="test3">
+            <button class="btn" ngclipboard ngclipboard-success="onSuccess(e);" ngclipboard-error="onError(e);" data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">
+                Copy to clipboard
+            </button>
+        </div>
+
+
+    </div>
+</body>
+
+</html>

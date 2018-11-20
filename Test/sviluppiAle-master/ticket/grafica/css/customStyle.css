@@ -1,0 +1,47 @@
+.background{
+    background-color: #daefee;
+}
+
+.altezzaFormLogin{
+    height: 200px;
+}
+
+.vertical-top-2{
+    margin-top: 2%;
+}
+
+.vertical-top-5{
+    margin-top: 5%;
+}
+
+.vertical-top-10{
+    margin-top: 10%;
+}
+
+.vertical-top-25{
+    margin-top: 25%;
+}
+
+.panelHeadingCustom {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #ffffff;
+    background-color: #006e84;
+    border-color: #193E9E;
+}
+
+.buttonDSC{
+    color: #333;
+    background-color: #fff;
+    border-color: #427f9e;
+}
+
+.errorAlertColor{
+    color: #8B0000;
+}
+
+.inputRequired{
+    border-color: #8B0000;
+}

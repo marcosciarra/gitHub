@@ -1,0 +1,29 @@
+.sidebarOpened, .sidebarClosed {
+    background-color: #0c5460;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    overflow-x: hidden;
+    transition: ease 0.5s;
+    width: 200px;
+}
+.sidebarOpened {left: 0;}
+.sidebarClosed {left: -200px;}
+
+.contentPart, .contentFull {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #cce5ff;
+    transition: ease 0.5s;
+    width: 100%;
+}
+.contentFull {padding-left: 0;}
+.contentPart {padding-left: 200px;}
+
+@media only screen and (max-width: 768px) {
+    .sidebarClosed {left: 0;}
+    .sidebarOpened {left: -200px;}
+    .contentPart {padding-left: 0;}
+    .contentFull {padding-left: 200px;}
+}

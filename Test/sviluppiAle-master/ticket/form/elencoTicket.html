@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <link rel="import" href="../grafica/header.html">
+    <!-- import angularjs controller-->
+    <script type="text/javascript" src="../controller/elencoTicketController.js"></script>
+    <title>Elenco Ticket</title>
+</head>
+
+<body class="background" ng-app="dscApp" ng-controller="elencoTicketController">
+
+<div id="container" class="col-md-12 vertical-top-2">
+    <div class="panel panel-default panelCustom">
+
+        <div class="panelHeadingCustom">
+            <i class="glyphicon glyphicon-folder-open"></i> <label style="font-weight: bold">&nbsp; ELENCO TICKET: </label> {{username}}
+
+            <button type="button" class="btn btn-sm buttonDSC" ng-click="goToNewTicket()" style="float: right" title="Inserisci nuovo Ticket">Nuovo Ticket</button>
+        </div>
+
+        <div class="panel-body">
+
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

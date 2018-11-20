@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <!--import Bootstrap-->
+    <link rel="stylesheet" href="../_lib/bootstrap.css">
+    <!--import AngularJS-->
+    <script type="text/javascript" src="../_lib/angular.min.js"></script>
+    <!--import modulo ngAnimate-->
+    <script type="text/javascript" src="../_lib/angular-animate.js"></script>
+
+
+    <script type="text/javascript" src="./lib/angular-sanitize.js"></script>
+    <script type="text/javascript" src="./lib/wysiwyg.min.js"></script>
+    <link rel="stylesheet" href="./lib/editor.min.css">
+
+
+    <script type="text/javascript" src="./controller/wysiwygController.js"></script>
+
+
+    <meta charset="UTF-8">
+    <title>Test</title>
+
+    <style>
+        .droptarget {
+            float: left;
+            width: 100px;
+            height: 35px;
+            margin: 15px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+    </style>
+
+</head>
+<body ng-controller="wysiwygController">
+<div style="width: 80%;">
+    <wysiwyg-edit content="content" config="editorConfig" id="testo"></wysiwyg-edit>
+</div>
+
+
+<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <p ondragstart="dragStart(event)" draggable="true" id=" <#>canone<#> ">Canone</p>
+</div>
+<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <p ondragstart="dragStart(event)" draggable="true" id=" <#>affitto<#> ">Affitto</p>
+</div>
+<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <p ondragstart="dragStart(event)" draggable="true" id=" <#>locatore<#> ">Locatore</p>
+</div>
+<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <p ondragstart="dragStart(event)" ng-click="addTag(' <#>conduttore<#> ')" draggable="true" id=" <#>conduttore<#> ">Conduttore</p>
+</div>
+
+
+<script>
+    function dragStart(event) {
+        event.dataTransfer.setData("Text", event.target.id);
+        document.getElementById("demo").innerHTML = "Started to drag the p element";
+    }
+
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    //FIXME::CREARE FUNZIONE PER CONTROLLARE SE DISABILITARE PULSANTE PERCHE' GIA' USATO
+</script>
+
+</body>
+
+</html>

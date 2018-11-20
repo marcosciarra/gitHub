@@ -1,0 +1,308 @@
+<div id="containerDatiCliente" class="card">
+    <!-- HEADER DATI CLIENTE-->
+    <div class="card-header panelHeaderSezioneCustom">
+        <span class="card-link pointer" data-toggle="collapse" href="#panelDatiCliente">
+            DATI CLIENTE
+        </span>
+    </div>
+    <!-- BODY DATI CLIENTE-->
+    <div id="panelDatiCliente" class="card-block panelBodySezioneCustom collapse show">
+
+        <!--TIPOLOGIA-------------------------------------------------------------------------------------------------->
+        <div id="containerTipologia" class="card-header panelHeaderSottoSezioneCustom">
+            <span>Tipologia</span>
+        </div>
+        <div class="card-body panelBodySottoSezioneCustom">
+            <div class="form-group row">
+                <strong class="col-2 text-right">Tipo:</strong>
+                <div class="col-10">
+                    <select class="form-control form-control-sm" ng-options="t.tipo as t.descrizione for t in tipologiaCliente"
+                            ng-model="nuovoCliente.tipologia" ng-change="cambiaTipologiaCliente()"></select>
+                </div>
+            </div>
+        </div>
+
+        <!--INTESTAZIONE----------------------------------------------------------------------------------------------->
+        <div id="containerIntestazione" class="card-header panelHeaderSottoSezioneCustom">
+            <span>Intestazione</span>
+        </div>
+        <div class="card-body panelBodySottoSezioneCustom">
+
+            <div class="form-group row" ng-show="nuovoCliente.tipologia == 'C' ">
+                <strong class="col-2 text-right">Nome:</strong>
+                <div class="col-4">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-class="nuovoCliente.intestazione.nomeRagioneSociale == '' ? 'form-control-required requiredField' : '' "
+                           ng-model="nuovoCliente.intestazione.nomeRagioneSociale" placeholder="Nome"
+                           ng-change="verificaDatiObbligatori()" >
+                </div>
+                <strong class="col-2 text-right">Cognome:</strong>
+                <div class="col-4">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-class="nuovoCliente.intestazione.cognomeRagioneSocialeEst == '' ? 'form-control-required requiredField' : '' "
+                           ng-model="nuovoCliente.intestazione.cognomeRagioneSocialeEst" placeholder="Cognome"
+                           ng-change="verificaDatiObbligatori()" >
+                </div>
+            </div>
+            <div class="form-group row" ng-show="nuovoCliente.tipologia != 'C' ">
+                <strong class="col-2 text-right">Ragione Sociale:</strong>
+                <div class="col-5">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-class="nuovoCliente.intestazione.nomeRagioneSociale == '' ? 'form-control-required requiredField' : '' "
+                           ng-model="nuovoCliente.intestazione.nomeRagioneSociale" placeholder="Ragione Sociale"
+                           ng-change="verificaDatiObbligatori()" >
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.intestazione.cognomeRagioneSocialeEst" placeholder="Ragione Sociale Estesa">
+                </div>
+            </div>
+        </div>
+
+        <!--DATI FISCALI----------------------------------------------------------------------------------------------->
+        <div id="containerDatiFiscali" class="card-header panelHeaderSottoSezioneCustom">
+            <span>Dati Fiscali</span>
+        </div>
+        <div class="card-body panelBodySottoSezioneCustom">
+            <div class="form-group row">
+
+                <strong class="col-2 text-right" ng-show="nuovoCliente.tipologia != 'C'">Partita IVA:</strong>
+                <!-- ditta individuale -->
+                <div class="col-4 input-group" ng-show="nuovoCliente.tipologia == 'X'">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-class="!partitaIvaDittaIndividuale ? 'form-control-required requiredField' : '' "
+                           ng-model="nuovoCliente.datiFiscali.partitaIva" placeholder="Partita IVA"
+                           ng-change="verificaPartitaIvaDittaIndividuale(nuovoCliente.datiFiscali.partitaIva); verificaDatiObbligatori(); ">
+                </div>
+                <!-- azienda -->
+                <div class="col-4 input-group" ng-show="nuovoCliente.tipologia == ' '">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-class="!partitaIvaAzienda ? 'form-control-required requiredField' : '' "
+                           ng-model="nuovoCliente.datiFiscali.partitaIva" placeholder="Partita IVA"
+                           ng-change="verificaPartitaIvaAzienda(nuovoCliente.datiFiscali.partitaIva);  verificaDatiObbligatori();">
+                    <div class="input-group-addon paddingLR10" title="Copia in Codice Fiscale" ng-click="copyPIVAinCF()"><i class="fa fa-copy pointer"></i></div>
+                </div>
+
+                <strong class="col-2 text-right">Codice Fiscale:</strong>
+                <!-- privato -->
+                <div class="col-4" ng-show="nuovoCliente.tipologia == 'C' ">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-class="!codiceFiscalePrivato ? 'form-control-required requiredField' : '' "
+                           ng-model="nuovoCliente.datiFiscali.codiceFiscale" placeholder="Codice Fiscale"
+                           ng-change="verificaCodiceFiscalePrivato(nuovoCliente.datiFiscali.codiceFiscale);  verificaDatiObbligatori();">
+                </div>
+                <!-- ditta individuale -->
+                <div class="col-4" ng-show="nuovoCliente.tipologia == 'X' ">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-class="!codiceFiscaleDittaIndividuale ? 'form-control-required requiredField' : '' "
+                           ng-model="nuovoCliente.datiFiscali.codiceFiscale" placeholder="Codice Fiscale"
+                           ng-change="verificaCodiceFiscaleDittaIndividuale(nuovoCliente.datiFiscali.codiceFiscale);  verificaDatiObbligatori();">
+                </div>
+                <!-- azienda -->
+                <div class="col-4" ng-show="nuovoCliente.tipologia == ' ' ">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-class="!codiceFiscaleAzienda ? 'form-control-required requiredField' : '' "
+                           ng-model="nuovoCliente.datiFiscali.codiceFiscale" placeholder="Codice Fiscale"
+                           ng-change="verificaCodiceFiscaleAzienda(nuovoCliente.datiFiscali.codiceFiscale);  verificaDatiObbligatori();">
+                </div>
+
+            </div>
+        </div>
+
+        <!--INDIRIZZO-------------------------------------------------------------------------------------------------->
+        <div id="containerIndirizzo" class="card-header panelHeaderSottoSezioneCustom">
+            <span>Indirizzo</span>
+        </div>
+        <div class="card-body panelBodySottoSezioneCustom">
+            <div class="form-group row">
+                <strong class="col-2 text-right">Indirizzo:</strong>
+                <div class="col-5">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.indirizzo.indirizzo" placeholder="Indirizzo">
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.indirizzo.indirizzoEst" placeholder="Indirizzo Esteso">
+                </div>
+            </div>
+            <div class="form-group row">
+                <strong class="col-2 text-right">CAP:</strong>
+                <div class="col-1">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.indirizzo.cap" placeholder="CAP">
+                </div>
+                <strong class="col-1 text-right">Citt&aacute;:</strong>
+                <div class="col-2">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.indirizzo.citta" placeholder="Città">
+                </div>
+                <strong class="col-2 text-right">Provincia:</strong>
+                <div class="col-1">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.indirizzo.provincia" placeholder="Provincia">
+                </div>
+                <strong class="col-1 text-right">Stato:</strong>
+                <div class="col-2">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.indirizzo.stato" placeholder="Stato">
+                </div>
+            </div>
+        </div>
+
+        <!--CONTATTI--------------------------------------------------------------------------------------------------->
+        <div id="containerContatti" class="card-header panelHeaderSottoSezioneCustom">
+            <span>Contatti</span>
+        </div>
+        <div class="card-body panelBodySottoSezioneCustom">
+            <div class="form-group row">
+                <strong class="col-2 text-right">Telefono:</strong>
+                <div class="col-4">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.contatti.telefono" placeholder="Telefono">
+                </div>
+                <strong class="col-2 text-right">Cellulare:</strong>
+                <div class="col-4">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.contatti.cellulare" placeholder="Cellulare">
+                </div>
+            </div>
+            <div class="form-group row">
+                <strong class="col-2 text-right">E-mail:</strong>
+                <div class="col-4">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.contatti.email" placeholder="E-mail">
+                </div>
+                <strong class="col-2 text-right">Fax:</strong>
+                <div class="col-4">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.contatti.fax" placeholder="Fax">
+                </div>
+            </div>
+            <div class="form-group row" ng-show="nuovoCliente.tipologia != 'C' ">
+                <strong class="col-2 text-right">Referente aziendale:</strong>
+                <div class="col-2">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.contatti.referenteAziendale" placeholder="Referente aziendale">
+                </div>
+                <strong class="col-2 text-right">Pec:</strong>
+                <div class="col-2">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.contatti.pec" placeholder="Pec">
+                </div>
+                <strong class="col-2 text-right">Sito:</strong>
+                <div class="col-2">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.contatti.sito" placeholder="Sito">
+                </div>
+            </div>
+        </div>
+
+        <!--DATI PRIVATI/RAPPRESENTANTE-------------------------------------------------------------------------------->
+        <div id="containerDatiPrivati" class="card-header panelHeaderSottoSezioneCustom">
+            <!--privato-->
+            <span ng-show="nuovoCliente.tipologia == 'C' ">Dati Privati</span>
+            <!--ditta individuale/azienda-->
+            <span ng-show="nuovoCliente.tipologia == ' ' || nuovoCliente.tipologia == 'X' ">Dati Rappresentante</span>
+        </div>
+        <div class="card-body panelBodySottoSezioneCustom">
+            <div class="form-group row" ng-show="nuovoCliente.tipologia != 'C' ">
+                <strong class="col-2 text-right">Nome:</strong>
+                <!--azienda-->
+                <div class="col-4" ng-show="nuovoCliente.tipologia == ' ' ">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.datiPrivati.nome" placeholder="Nome" >
+                </div>
+                <!--ditta individuale-->
+                <div class="col-4" ng-show="nuovoCliente.tipologia == 'X' ">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-class="nuovoCliente.datiPrivati.nome == '' ? 'form-control-required requiredField' : '' "
+                           ng-model="nuovoCliente.datiPrivati.nome" placeholder="Nome"
+                           ng-change="verificaDatiObbligatori()" >
+                </div>
+                <strong class="col-2 text-right">Cognome:</strong>
+                <!--azienda-->
+                <div class="col-4" ng-show="nuovoCliente.tipologia == ' ' ">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.datiPrivati.cognome" placeholder="Cognome" >
+                </div>
+                <!--ditta individuale-->
+                <div class="col-4" ng-show="nuovoCliente.tipologia == 'X' ">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-class="nuovoCliente.datiPrivati.cognome == '' ? 'form-control-required requiredField' : '' "
+                           ng-model="nuovoCliente.datiPrivati.cognome" placeholder="Cognome"
+                           ng-change="verificaDatiObbligatori()" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <strong class="col-2 text-right">Sesso:</strong>
+                <div class="col-4">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" value="M" ng-model="nuovoCliente.datiPrivati.sesso"> M
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" value="F" ng-model="nuovoCliente.datiPrivati.sesso"> F
+                        </label>
+                    </div>
+                </div>
+                <strong class="col-2 text-right">Data Nascita:</strong>
+                <!--privato/azienda-->
+                <div class="col-4" ng-show="nuovoCliente.tipologia != 'X' ">
+                    <input type="date" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.datiPrivati.dataNascita">
+                </div>
+                <!--ditta individuale-->
+                <div class="col-4" ng-show="nuovoCliente.tipologia == 'X' ">
+                    <input type="date" class="form-control form-control-sm"
+                           ng-class="nuovoCliente.datiPrivati.dataNascita == '' || nuovoCliente.datiPrivati.dataNascita == null ? 'form-control-required requiredField' : '' "
+                           ng-model="nuovoCliente.datiPrivati.dataNascita"
+                           ng-change="verificaDatiObbligatori()">
+                </div>
+            </div>
+            <div class="form-group row">
+                <strong class="col-2 text-right">Luogo nascita:</strong>
+                <!--privato/azienda-->
+                <div class="col-2" ng-show="nuovoCliente.tipologia != 'X' ">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.datiPrivati.luogoNascita" placeholder="Luogo nascita">
+                </div>
+                <!--ditta individuale-->
+                <div class="col-2" ng-show="nuovoCliente.tipologia == 'X' ">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-class="nuovoCliente.datiPrivati.luogoNascita == '' ? 'form-control-required requiredField' : '' "
+                           ng-model="nuovoCliente.datiPrivati.luogoNascita" placeholder="Luogo nascita"
+                           ng-change="verificaDatiObbligatori()">
+                </div>
+                <strong class="col-2 text-right">Provincia nascita:</strong>
+                <!--privato/azienda-->
+                <div class="col-2" ng-show="nuovoCliente.tipologia != 'X' ">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.datiPrivati.provinciaNascita" placeholder="Provincia nascita">
+                </div>
+                <!--ditta individuale-->
+                <div class="col-2" ng-show="nuovoCliente.tipologia == 'X' ">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-class="nuovoCliente.datiPrivati.provinciaNascita == '' ? 'form-control-required requiredField' : '' "
+                           ng-model="nuovoCliente.datiPrivati.provinciaNascita" placeholder="Provincia nascita"
+                           ng-change="verificaDatiObbligatori()">
+                </div>
+                <strong class="col-2 text-right">Stato nascita:</strong>
+                <!--privato/azienda-->
+                <div class="col-2" ng-show="nuovoCliente.tipologia != 'X' ">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-model="nuovoCliente.datiPrivati.statoNascita" placeholder="Stato nascita">
+                </div>
+                <!--ditta individuale-->
+                <div class="col-2" ng-show="nuovoCliente.tipologia == 'X' ">
+                    <input type="text" class="form-control form-control-sm"
+                           ng-class="nuovoCliente.datiPrivati.statoNascita == '' ? 'form-control-required requiredField' : '' "
+                           ng-model="nuovoCliente.datiPrivati.statoNascita" placeholder="Stato nascita"
+                           ng-change="verificaDatiObbligatori()">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div> <!-- close containerDatiCliente -->

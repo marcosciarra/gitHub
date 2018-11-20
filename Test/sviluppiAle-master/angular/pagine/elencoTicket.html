@@ -1,0 +1,168 @@
+<html>
+
+<head>
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    <!-- import bootstrap -->
+    <link href="../grafica/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <!-- import custom css -->
+    <link href="../grafica/css/ticketStyle.css" rel="stylesheet" type="text/css" media="all">
+    <!-- import angularjs -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <!-- import angularjs controller-->
+    <script type="text/javascript" src="../angular/elencoTicketController.js"></script>
+    <!-- import bootstrap ui js -->
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+
+    <title>Elenco Ticket</title>
+</head>
+
+<body class="background" ng-app="myApp" ng-controller="elencoTicketController">
+
+<div id="containerTicket" class="margineAlto10">
+
+    <div class="panel-default panelCustom">
+
+        <div class="panel-heading panleHeadingCustom">
+            <p class="text-center">ELENCO TICKET di: {{username}}</p>
+            <button type="button" class="btn btn-custom btnRight margineAltoMeno35" ng-click="goToNewTicket()">Nuovo Ticket</button>
+        </div>
+
+        <div class="panel-body">
+
+            <!-- GLOBAL SEARCH
+            <anagrafica class="margineAlto10">
+                <div class="anagrafica-group col-md-10 col-md-offset-1">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                        <input type="text" class="anagrafica-control" placeholder="Cerca ticket..." ng-model="search">
+                    </div>
+                </div>
+            </anagrafica>
+            -->
+
+            <!-- Show dettagli -->
+            <div class="panel panel-default margineAlto10 margineBasso10 col-md-10 col-md-offset-1 text-center" ng-show="singleItem">
+                <div class="panel-body">
+
+                    <button class="btn btn-custom btnRight" ng-click="clear()">x</button>
+
+                    <h4 class="text-left"><strong>Dettaglio Ticket:</strong></h4>
+
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>Id:</th>
+                            <td>{{singleItem.id}}</td>
+                        </tr>
+                        <tr>
+                            <th>Titolo:</th>
+                            <td>{{singleItem.titolo}}</td>
+                        </tr>
+                        <tr>
+                            <th>Data:</th>
+                            <td>{{singleItem.data}}</td>
+                        </tr>
+                        <tr>
+                            <th>Descrizione:</th>
+                            <td>{{singleItem.descrizione}}</td>
+                        </tr>
+                        <tr>
+                            <th>Stato:</th>
+                            <td>
+                                <span ng-if="singleItem.stato == 'aperto'"> <img src="../grafica/immagini/green_dot.png" style="width: 20px"/> Aperto </span>
+                                <span ng-if="singleItem.stato == 'pending'"> <img src="../grafica/immagini/yellow_dot.png" style="width: 20px"/> Pending </span>
+                                <span ng-if="singleItem.stato == 'chiuso'"> <img src="../grafica/immagini/red_dot.png" style="width: 20px"/> Chiuso </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Priorita:</th>
+                            <td ng-if="singleItem.priorita == 1" style="color: #c60005"> Molto Alta </td>
+                            <td ng-if="singleItem.priorita == 2" style="color: #d58512"> Alta </td>
+                            <td ng-if="singleItem.priorita == 3" style="color: #f0ad4e"> Media </td>
+                            <td ng-if="singleItem.priorita == 4" style="color: #5cb85c"> Bassa </td>
+                            <td ng-if="singleItem.priorita == 5" style="color: #3c763d"> Molto Bassa </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <table class="table table-responsive text-center">
+                <thead>
+                <tr>
+                    <td>
+                        <h4 class="customHeader" ng-click="sortType = 'titolo'; sortReverse = !sortReverse">Titolo</h4>
+                        <span ng-show="sortType == 'titolo' && !sortReverse"></span>
+                        <span ng-show="sortType == 'titolo' && sortReverse"></span>
+                        <input type="text" class="form-control" ng-model="search.titolo" />
+                    </td>
+                    <td>
+                        <h4 class="customHeader" ng-click="sortType = 'data'; sortReverse = !sortReverse">Data</h4>
+                        <span ng-show="sortType == 'data' && !sortReverse"></span>
+                        <span ng-show="sortType == 'data' && sortReverse"></span>
+                        <input type="text" class="form-control" ng-model="search.data" />
+                    </td>
+                    <td>
+                        <h4 class="customHeader" ng-click="sortType = 'descrizione'; sortReverse = !sortReverse">Descrizione</h4>
+                        <span ng-show="sortType == 'descrizione' && !sortReverse"></span>
+                        <span ng-show="sortType == 'descrizione' && sortReverse"></span>
+                        <input type="text" class="form-control" ng-model="search.descrizione" />
+                    </td>
+                    <td>
+                        <h4 class="customHeader" ng-click="sortType = 'stato'; sortReverse = !sortReverse">Stato</h4>
+                        <span ng-show="sortType == 'stato' && !sortReverse"></span>
+                        <span ng-show="sortType == 'stato' && sortReverse"></span>
+                        <input type="text" class="form-control" ng-model="search.stato" />
+                    </td>
+                    <td>
+                        <h4 class="customHeader" ng-click="sortType = 'priorita'; sortReverse = !sortReverse">Priorita</h4>
+                        <span ng-show="sortType == 'priorita' && !sortReverse"></span>
+                        <span ng-show="sortType == 'priorita' && sortReverse"></span>
+                        <input type="text" class="form-control" ng-model="search.priorita" />
+                    </td>
+                    <td>
+                        <button class="btn btn-custom margineAlto40" ng-click="clearSearch()">Reset</button>
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="x in data.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | orderBy:sortType:sortReverse | filter:search">
+                    <td>{{x.titolo}}</td>
+                    <td>{{x.data}}</td>
+                    <td>{{x.descrizione}}</td>
+                    <td>{{x.stato}}</td>
+                    <td>{{x.priorita}}</td>
+                    <td><button class="btn btn-custom" ng-click="show(x)">Dettagli</button></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div id="paginationSection" class="margineBasso10 text-center" >
+                <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></pagination>
+            </div>
+
+            <div id="paginationInfoSection" class="margineBasso10 text-center">
+                <span>
+                Visualizza
+                <select ng-model="viewby" ng-change="setItemsPerPage(viewby)">
+                    <option>5</option>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>All</option>
+                </select>
+                record per pagina.
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="copyright col-sm-12 vcenter">
+    <p> D.S.C. Digital System Computers Srl . All rights reserved </p>
+</div>
+
+</body>
+</html>

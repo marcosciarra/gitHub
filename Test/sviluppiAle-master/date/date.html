@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>data</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+    <script type="text/javascript" src="lib/moment.js"></script>
+    <script type="text/javascript" src="lib/moment-with-locales.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/webshim@1.16.0/js-webshim/minified/polyfiller.min.js"></script>
+
+    <script>
+        webshims.setOptions('forms-ext', {types: 'date'});
+        webshims.polyfill('forms forms-ext');
+    </script>
+
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<h3>chrome - firefox</h3>
+
+Data: <input type="date" ng-model="data" ng-change="setData2()"/>
+<button ng-click="formatta()">formatta data</button>
+<br/><br/>
+data brutta: {{data}}
+<br/>
+data bella: {{formattedData}}
+<br/><br/><br/>
+Data 2: <input type="date" ng-model="data2">
+<button ng-click="formatta2()">formatta data</button>
+<br/><br/>
+data brutta 2: {{data2}}
+<br/>
+data bella 2: {{formattedData2}}
+
+<script>
+
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+
+        $scope.data = null;
+        $scope.data2 = null;
+        $scope.formattedData = null;
+
+        $scope.setData2 = function () {
+
+            $scope.data2 = $scope.data;
+        };
+
+        moment.locale('it');
+
+        $scope.formatta = function(){
+
+            var d = moment($scope.data);
+            $scope.formattedData = d.format('L');
+
+            //var minus = d.subtract(1, 'days').add(4, 'years');
+        };
+
+        $scope.formatta2 = function(){
+
+            var d = moment($scope.data2);
+            $scope.formattedData2 = d.format('L');
+
+            //var minus = d.subtract(1, 'days').add(4, 'years');
+        };
+
+    });
+
+
+</script>
+</body>
+</html>

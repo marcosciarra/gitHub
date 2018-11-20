@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<title>test invio dati</title>
+<body>
+
+<div ng-app="myApp" ng-controller="myController">
+
+    <h2>Invio JSON tramite http POST</h2>
+    <br/>
+    <span>json:{{dati}}</span>
+
+</div>
+
+<script>
+    var app = angular.module('myApp',[]);
+
+    app.controller('myController', function($scope, $http) {
+
+        var url = "http://..";
+        $scope.dati = {id: 1, descrizione: "xxx"};
+
+        $http.post(url, {headers: {'Access-Control-Allow-Origin': '*'}}, $scope.dati)
+            .then(function (data, status, headers, config) {
+                alert("success");
+                console.log(data);
+            },function (data, status, headers, config) {
+                alert("error");
+        });
+
+    });
+</script>

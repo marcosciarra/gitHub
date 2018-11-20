@@ -1,0 +1,15 @@
+{
+  "name": "mynote",
+  "version": "1.0.0",
+  "description": "app per scrivere note",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marco",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0"
+  }
+}

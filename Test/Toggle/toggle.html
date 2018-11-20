@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <!--import Bootstrap-->
+    <link rel="stylesheet" href="../_lib/bootstrap.css">
+    <!--import AngularJS-->
+    <script type="text/javascript" src="../_lib/angular.min.js"></script>
+    <!--import modulo ngAnimate-->
+    <script type="text/javascript" src="../_lib/angular-animate.js"></script>
+
+
+    <script type="text/javascript" src="./lib/angular-bootstrap-toggle.min.js"></script>
+    <link rel="stylesheet" href="./lib/angular-bootstrap-toggle.min.css">
+
+
+    <meta charset="UTF-8">
+    <title>Toggle</title>
+</head>
+<body ng-controller="toggleController">
+a
+<toggle ng-model="toggleValue" ng-change="changed()" on="Enabled" off="Disabled"></toggle>
+b
+</body>
+</html>

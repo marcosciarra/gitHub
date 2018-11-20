@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- bootstrap js & css -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/popper/popper.min.js"></script>
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- jquery -->
+    <script src="js/jquery-3.2.1/jquery.min.js"></script>
+    <!-- angular -->
+    <script src="js/angularjs/angular.min.js"></script>
+    <!-- controller -->
+    <script src="controller/indexController.js"></script>
+
+</head>
+<body ng-app="app" ng-controller="pageController">
+
+        <div class="" ng-class="{'sidebarOpened' : visible, 'sidebarClosed' : !visible}">
+            <ul class="list-group">
+                <li class="list-group-item">New <span class="badge">12</span></li>
+                <li class="list-group-item">Deleted <span class="badge">5</span></li>
+                <li class="list-group-item">Warnings <span class="badge">3</span></li>
+            </ul>
+        </div>
+
+        <div class="" ng-class="{'contentPart' : visible, 'contentFull' : !visible}">
+            <button class="btn" ng-click="mostraMenu()">set</button>
+            <div class="card">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus condimentum nulla eget nulla commodo, sodales venenatis urna malesuada. Nam in erat vitae sem tempus rhoncus at non elit. Cras dictum ante erat, quis sodales ex pulvinar id. Proin auctor auctor urna, vel facilisis mauris suscipit a. Integer at imperdiet nisi. In ligula ante, efficitur nec tortor ut, porta interdum metus. Aenean in lorem dapibus, molestie neque at, gravida quam. Fusce at lacus nibh. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec porttitor purus a blandit pellentesque. Vivamus ac congue elit. Pellentesque vestibulum convallis est, nec finibus nulla vulputate at. Pellentesque ut egestas quam. In dui elit, tincidunt eu nibh accumsan, tincidunt fringilla justo.
+
+                    In hac habitasse platea dictumst. Donec elementum ut ligula ultricies euismod. Aliquam sed lacinia odio. Donec ullamcorper, mi a consectetur venenatis, dolor mauris interdum purus, eu cursus lectus nisl eget leo. Ut aliquam maximus eros, iaculis commodo nisi ornare id. Nulla placerat porta malesuada. Suspendisse bibendum turpis et tellus pretium scelerisque. Donec tristique laoreet dictum. Proin et turpis convallis, rhoncus erat et, mattis felis. Nam eget quam rutrum, placerat elit vel, vestibulum ipsum. Nullam vitae scelerisque velit, mattis blandit leo. Duis non lectus sed urna tincidunt finibus et ut justo. Nunc sit amet enim nec nisl rhoncus rutrum eget et enim. Etiam orci ipsum, condimentum sit amet consectetur et, viverra sed diam. Mauris vitae dui sem.
+
+                    Aenean interdum nunc ac turpis tincidunt, in pulvinar nibh ornare. Sed semper bibendum ligula eget congue. Duis rhoncus pharetra ipsum. Nullam finibus orci nec semper iaculis. Etiam pharetra tortor eu dolor volutpat, id pellentesque lectus efficitur. Ut blandit fringilla tincidunt. Phasellus lacinia aliquam purus nec tincidunt. Sed egestas ac velit a pulvinar. Aliquam porttitor lobortis mi, nec commodo nunc tempor in. Curabitur condimentum tincidunt bibendum.
+
+                    Integer in est fermentum, maximus neque rhoncus, sollicitudin quam. Nullam ac sem at mauris ornare volutpat. Vestibulum eu euismod quam, nec dapibus nunc. Cras et nisi sit amet erat maximus porta non nec arcu. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce maximus arcu vel ullamcorper ullamcorper. Donec non molestie velit, at euismod turpis. Morbi quis pretium nisi, volutpat rutrum sapien. Quisque blandit turpis quis odio gravida lobortis. Nam sit amet risus eu sem malesuada laoreet. Maecenas blandit elementum dui. In luctus erat purus, id semper arcu rutrum nec. Cras imperdiet nisi vitae lacinia rutrum. Proin condimentum semper nulla, et tempus orci ultrices in. Mauris rutrum ante vel arcu iaculis ultricies.
+
+                    Suspendisse pharetra, ipsum sed varius rutrum, quam justo mollis purus, sit amet posuere risus leo quis ipsum. Vestibulum magna eros, finibus in nulla et, luctus luctus mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris ut vestibulum diam. Nulla ac mi nulla. Vestibulum id feugiat leo, non laoreet nisl. Proin mattis nunc ipsum, vel convallis magna lacinia quis. Nulla ac condimentum massa, in tristique leo. Integer commodo convallis lacus id efficitur. </div>
+                <div class="card-footer">Footer</div>
+            </div>
+        </div>
+
+
+</body>
+</html>

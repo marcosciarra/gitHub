@@ -1,0 +1,158 @@
+<html>
+
+<head>
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    <!-- import bootstrap -->
+    <link href="../grafica/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <!-- import custom css -->
+    <link href="../grafica/css/ticketStyle.css" rel="stylesheet" type="text/css" media="all">
+    <!-- import angularjs -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <!-- import angularjs controller-->
+    <script type="text/javascript" src="../angular/nuovoTicketController.js"></script>
+    <!-- import bootstrap ui js -->
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+    <!-- import for datepicker -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.2.0.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- import for upload -->
+    <script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
+    <script src="https://angular-file-upload.appspot.com/js/ng-file-upload-shim.js"></script>
+
+    <title>Nuovo Ticket</title>
+</head>
+
+<body class="background" ng-app="myApp" ng-controller="nuovoTicketController">
+
+<div id="containerTicket" class="margineAlto10">
+
+    <div class="panel-default panelCustom">
+
+        <div class="panel-heading panleHeadingCustom">
+            <button type="button" class="btn btn-sm btn-custom" ng-click="goToElencoTicket()"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></button>
+            <p class="text-center margineAltoMeno20">INSERIMENTO NUOVO TICKET di: {{username}}</p>
+        </div>
+
+        <div class="panel-body">
+
+        <!-- Ticket inserito dettaglio -->
+        <div class="panel panel-default margineAlto10 margineBasso10 col-md-10 col-md-offset-1 text-center" ng-show="flgShow">
+            <div class="panel-body">
+
+                <div class="btn-group" style="float: right;">
+                    <button class="btn btn-custom" ng-click="goToElencoTicket()">Elenco Ticket</button>
+                    <button class="btn btn-custom" ng-click="nuovoTicket()">Nuovo</button>
+                </div>
+
+                <h4 class="text-left"><strong>Ticket inserito correttamente, riassunto dettagli:</strong></h4>
+
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Titolo:</th>
+                        <td>{{ticket.titolo}}</td>
+                    </tr>
+                    <tr>
+                        <th>Descrizione:</th>
+                        <td>{{ticket.descrizione}}</td>
+                    </tr>
+                    <tr>
+                        <th>Priorita:</th>
+                        <td ng-if="ticket.priorita == 1" style="color: #c60005"> Molto Alta </td>
+                        <td ng-if="ticket.priorita == 2" style="color: #d58512"> Alta </td>
+                        <td ng-if="ticket.priorita == 3" style="color: #f0ad4e"> Media </td>
+                        <td ng-if="ticket.priorita == 4" style="color: #5cb85c"> Bassa </td>
+                        <td ng-if="ticket.priorita == 5" style="color: #3c763d"> Molto Bassa </td>
+                    </tr>
+                    <tr>
+                        <th>Stato:</th>
+                        <td>
+                            <span ng-if="ticket.stato == 'Aperto'"> <img src="../grafica/immagini/green_dot.png" style="width: 20px"/> Aperto </span>
+                            <span ng-if="ticket.stato == 'Pending'"> <img src="../grafica/immagini/yellow_dot.png" style="width: 20px"/> Pending </span>
+                            <span ng-if="ticket.stato == 'Chiuso'"> <img src="../grafica/immagini/red_dot.png" style="width: 20px"/> Chiuso </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Data:</th>
+                        <td>{{ticket.data | date:'fullDate' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Allegato</th>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+            <div class="form-group col-md-8">
+
+                <!-- TITOLO -->
+                <label class="control-label " for="titolo">Titolo Ticket:</label>
+                <input type="text" class="form-control" id="titolo" ng-model="ticket.titolo">
+
+                <!-- DESCRIZIONE -->
+                <label for="descrizione">Descrizione:</label>
+                <textarea class="form-control" rows="3" id="descrizione" ng-model="ticket.descrizione"></textarea>
+
+                <!-- PRIORITÀ -->
+                <label for="descrizione">Priorita:</label><br/>
+                <label class="radio-inline" style="color: #c60005"><input type="radio" name="optradio" ng-model="ticket.priorita" ng-value="1"> Molto Alta </label>
+                <label class="radio-inline" style="color: #d58512"><input type="radio" name="optradio" ng-model="ticket.priorita" ng-value="2"> Alta </label>
+                <label class="radio-inline" style="color: #f0ad4e"><input type="radio" name="optradio" ng-model="ticket.priorita" ng-value="3"> Media </label>
+                <label class="radio-inline" style="color: #5cb85c"><input type="radio" name="optradio" ng-model="ticket.priorita" ng-value="4"> Bassa </label>
+                <label class="radio-inline" style="color: #3c763d"><input type="radio" name="optradio" ng-model="ticket.priorita" ng-value="5"> Molto Bassa </label>
+                <br/>
+
+                <!-- STATO -->
+                <label for="stato">Stato:</label>
+                <select id="stato" class="selectpicker" ng-model="ticket.stato">
+                    <option>Aperto</option>
+                    <option>Pending</option>
+                    <option>Chiuso</option>
+                </select>
+
+                <!-- ALLEGATO -->
+                <label for="allegato">Allegato:</label>
+                <input id="allegato" data-my-Directive type="file" name="file">
+                <!--
+                <input id="allegato" type = "file" file-model = "myFile"/>
+                <button ng-click = "uploadFile()">Carica File</button>
+                -->
+            </div>
+
+            <div class="form-group col-md-4">
+                <!-- DATA INSERIMENTO -->
+                <label for="descrizione">Data:</label>
+                <div class="panel-body" style="background-color: #ffffff">
+                    {{ticket.data | date:'fullDate' }}
+                </div>
+
+                <div style="display:inline-block; min-height:290px;">
+                    <div uib-datepicker ng-model="ticket.data" class="well well-sm" datepicker-options="options"></div>
+
+                    <button type="button" class="btn btn-sm btn-custom" ng-click="today()">Oggi</button>
+                    <button type="button" class="btn btn-sm btn-custom" ng-click="clear()">Cancella</button>
+                    <button type="button" class="btn btn-sm btn-custom" ng-click="toggleMin()" uib-tooltip="A partire da oggi">Da oggi</button>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <button type="button" class="btn btn-custom" ng-click="inserisciTicket()">Inserisci Ticket</button>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="copyright col-sm-12 vcenter">
+    <p> D.S.C. Digital System Computers Srl . All rights reserved </p>
+</div>
+
+</body>
+</html>

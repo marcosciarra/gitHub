@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <script src="http://canvg.github.io/canvg/canvg.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/canvg/1.4.0/canvg.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.js"></script>
+
+    <script type="text/javascript" src="https://cdn.rawgit.com/SlexAxton/messageformat.js/v1.0.2/messageformat.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-cookies.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/angular-translate/bower-angular-translate/2.16.0/angular-translate.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/angular-translate/bower-angular-translate-interpolation-messageformat/2.16.0/angular-translate-interpolation-messageformat.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/angular-translate/bower-angular-translate-storage-cookie/2.16.0/angular-translate-storage-cookie.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/angular-translate/bower-angular-translate-storage-local/2.16.0/angular-translate-storage-local.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/angular-translate/bower-angular-translate-loader-url/2.16.0/angular-translate-loader-url.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/angular-translate/bower-angular-translate-loader-static-files/2.16.0/angular-translate-loader-static-files.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/angular-translate/bower-angular-translate-handler-log/2.16.0/angular-translate-handler-log.js"></script>
+    <script src="script.js"></script>
+    <script>
+
+
+
+
+        function startPrintProcess(canvasObj, fileName, callback) {
+            var pdf = new jsPDF('L', 'mm', [210, 297]);
+
+                pdfConf = {
+                    pagesplit: true,
+                    background: '#fff'
+                };
+
+            document.body.appendChild(canvasObj); //appendChild is required for html to add page in pdf
+            pdf.addHTML(canvasObj, 10, 10, pdfConf, function() {
+                document.body.removeChild(canvasObj);
+                pdf.addPage();
+                pdf.save(fileName + '.pdf');
+                callback();
+            });
+        }
+
+        $(document).ready(function(){
+            $("#print-btn").click(function(){
+
+                html2canvas(document.getElementById('dom-to-print'), {
+                    onrendered: function(canvasObj) {
+                        startPrintProcess(canvasObj, 'printedPDF',function (){
+                            //alert('PDF saved');
+                        });
+                        //save this object to the pdf
+                    }
+                });
+
+            });
+        });
+    </script>
+</head>
+<body ng-app="dscApp"  ng-controller="moduloNoleggioController">
+
+<div id='dom-to-print' class="card">
+
+        <div class="card-header text-center panelHeaderSezioneCustom">
+            <h3 translate>{{'titoloPagina'|translate}}</h3>
+            <button class="btn btn-sm" ng-click="changeLanguage('it')" translate="lingua_IT"></button>
+            <button class="btn btn-sm" ng-click="changeLanguage('en')" translate="lingua_EN"></button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm" ng-click="scaricaPDF()" alt="pdf" title="Scarica PDF">scarica</button>
+        </div>
+
+        <div id="panelModuloNoleggio" class="card-block panelBodySezioneCustom">
+            <!--DATI PERSONALI-->
+            <div id="containerDatiPersonali" class="card-header panelHeaderSottoSezioneCustom">
+                <span>{{'titoloSezioneDatiPersonali'|translate}}</span>
+            </div>
+            <div class="card-body panelBodySottoSezioneCustom">
+                <div class="row">
+                    <div class="form-group col-12 form-inline">
+                        <div class="col-2 text-right">
+                            <span>{{'labelNome'|translate}}:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-4" autocomplete="off">
+                        <div class="col-2 text-right">
+                            <span>{{'labelCognome'|translate}}:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-4" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-12 form-inline">
+                        <div class="col-2 text-right" ng-show="ita">
+                            <span >Codice fiscale:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-4" autocomplete="off" ng-show="ita">
+                        <div class="col-2 text-right">
+                            <span translate>{{'labelIndirizzo'|translate}}:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-4" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-12 form-inline">
+                        <div class="col-2 text-right">
+                            <span>{{'labelDataNascita'|translate}}:</span>
+                        </div>
+                        <div class="col-2 form-inline padding0">
+                            <input list="giornoNascitaList" type="number" class="form-control form-control-sm col-4" min="1" max="31" placeholder="DD" />
+                            <datalist id="giornoNascitaList">
+                                <option ng-repeat="g in giorni" value="{{g}}">
+                            </datalist>
+                            <input list="meseNascitaList" type="number" class="form-control form-control-sm col-4" min="1" max="12" placeholder="MM" />
+                            <datalist id="meseNascitaList">
+                                <option ng-repeat="m in mesi" value="{{m}}">
+                            </datalist>
+                            <input list="annoNascitaList" type="number" class="form-control form-control-sm col-4" min="1930" max="{{currentYear}}" placeholder="YY" />
+                            <datalist id="annoNascitaList">
+                                <option ng-repeat="a in anni" value="{{a}}">
+                            </datalist>
+                        </div>
+                        <div class="col-2 text-right">
+                            <span>{{'labelLuogoNascita'|translate}}</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-2" autocomplete="off" placeholder="{{'labelLuogoNascitaDett'|translate}}">
+                        <div class="col-3 text-right">
+                            <span>{{'labelAltezza'|translate}}</span>
+                            <small>{{'labelAltezzaDett'|translate}}</small>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-1" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-12 form-inline">
+                        <div class="col-2 text-right">
+                            <span>{{'labelTelefono'|translate}}:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-2" autocomplete="off">
+                        <div class="col-2 text-right">
+                            <span>{{'labelCellulare'|translate}}:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-2" autocomplete="off">
+                        <div class="col-2 text-right">
+                            <span>{{'labelEmail'|translate}}:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-2" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-12 form-inline">
+                        <div class="col-2 text-right">
+                            <span>{{'labelPatente'|translate}}:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-2" autocomplete="off">
+                        <div class="col-2 text-right">
+                            <span>{{'labelDataRilascio'|translate}}:</span>
+                        </div>
+                        <div class="col-2 form-inline padding0">
+                            <input list="giornoRilascioList" type="number" class="form-control form-control-sm col-4" min="1" max="31" placeholder="DD" />
+                            <datalist id="giornoRilascioList">
+                                <option ng-repeat="g in giorni" value="{{g}}">
+                            </datalist>
+                            <input list="meseRilascioList" type="number" class="form-control form-control-sm col-4" min="1" max="12" placeholder="MM" />
+                            <datalist id="meseRilascioList">
+                                <option ng-repeat="m in mesi" value="{{m}}">
+                            </datalist>
+                            <input list="annoRilascioList" type="number" class="form-control form-control-sm col-4" min="1930" max="{{currentYear}}" placeholder="YY" />
+                            <datalist id="annoRilascioList">
+                                <option ng-repeat="a in anni" value="{{a}}">
+                            </datalist>
+                        </div>
+                        <div class="col-2 text-right">
+                            <span>{{'labelDataScadenza'|translate}}:</span>
+                        </div>
+                        <div class="col-2 form-inline padding0">
+                            <input list="giornoScadenzaList" type="number" class="form-control form-control-sm col-4" min="1" max="31" placeholder="DD" />
+                            <datalist id="giornoScadenzaList">
+                                <option ng-repeat="g in giorni" value="{{g}}">
+                            </datalist>
+                            <input list="meseScadenzaList" type="number" class="form-control form-control-sm col-4" min="1" max="12" placeholder="MM" />
+                            <datalist id="meseScadenzaList">
+                                <option ng-repeat="m in mesi" value="{{m}}">
+                            </datalist>
+                            <input list="annoScadenzaList" type="number" class="form-control form-control-sm col-4" min="1930" max="{{currentYear}}" placeholder="YY" />
+                            <datalist id="annoScadenzaList">
+                                <option ng-repeat="a in anni" value="{{a}}">
+                            </datalist>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--DATI MEZZO-->
+            <div id="containerDatiMezzo" class="card-header panelHeaderSottoSezioneCustom">
+                <span>{{'titoloSezioneDatiMezzo'|translate}}</span>
+            </div>
+            <div class="card-body panelBodySottoSezioneCustom">
+                <div class="row">
+                    <div class="form-group col-12 form-inline">
+                        <div class="col-2 text-right">
+                            <span>{{'labelModelloMoto'|translate}}:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-4" readonly>
+                        <div class="col-2 text-right">
+                            <span>{{'labelModelloMotoAlternativo'|translate}}:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-4" readonly>
+                    </div>
+                    <div class="form-group col-12 form-inline">
+                        <div class="col-2 text-right">
+                            <span>{{'labelDataRitiro'|translate}}:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-4" readonly>
+                        <div class="col-2 text-right">
+                            <span>{{'labelDataRiconsegna'|translate}}:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-4" readonly>
+                    </div>
+                    <div class="form-group col-12 form-inline">
+                        <div class="col-2 text-right">
+                            <span>{{'labelLuogoRitiro'|translate}}:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-4" readonly>
+                        <div class="col-2 text-right">
+                            <span>{{'labelLuogoRiconsegna'|translate}}:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-4" readonly>
+                    </div>
+                    <div class="form-group col-12 form-inline">
+                        <div class="col-2 text-right">
+                            <span>{{'labelAccessori'|translate}}:</span>
+                        </div>
+                        <textarea type="text" rows="1" class="form-control form-control-sm col-7" readonly></textarea>
+                        <div class="col-2 text-right">
+                            <span>{{'labelGiorniNoleggio'|translate}}:</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-1" readonly>
+                    </div>
+                    <div class="form-group col-12 form-inline">
+                        <div class="col-2 text-right">
+                            <b>{{'labelTotaleNoleggio'|translate}}:</b>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-4" readonly>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <!--DATI CARTA DI CREDITO-->
+            <div id="containerDatiCC" class="card-header panelHeaderSottoSezioneCustom">
+                <span>{{'titoloSezioneDatiCC'|translate}}</span>
+            </div>
+            <div class="card-body panelBodySottoSezioneCustom">
+                <div class="row">
+                    <div class="form-group col-12 form-inline">
+                        <div class="col-2 text-right">
+                            <span>{{'labelNumeroCC'|translate}}:</span><br/>
+                            <small>{{'labelNumeroCCDett'|translate}}</small>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-2">
+                        <div class="col-2 text-right">
+                            <span>{{'labelScadenzaCC'|translate}}:</span>
+                        </div>
+                        <div class="col-2 form-inline padding0">
+                            <input list="meseScadCCList" type="number" class="form-control form-control-sm col-4" min="1" max="12" placeholder="MM" />
+                            <datalist id="meseScadCCList">
+                                <option ng-repeat="m in mesi" value="{{m}}">
+                            </datalist>
+                            <input list="annoScadCCList" type="number" class="form-control form-control-sm col-6" min="{{currentYear}}" max="{{currentYear100}}" placeholder="YY" />
+                            <datalist id="annoScadCCList">
+                                <option ng-repeat="a in anni10" value="{{a}}">
+                            </datalist>
+                        </div>
+                        <div class="col-3 text-right">
+                            <span>{{'labelCVV'|translate}}:</span><br/>
+                            <small>{{'labelCVVDett'|translate}}</small>
+                        </div>
+                        <input type="text" class="form-control form-control-sm col-1" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+            <!--DATI RICHIESTE-->
+            <div id="containerRichiesteParticolari" class="card-header panelHeaderSottoSezioneCustom">
+                <span>{{'labelRichiesteParticolari'|translate}}</span>
+            </div>
+            <div class="card-body panelBodySottoSezioneCustom">
+                <div class="row">
+                    <div class="form-group col-12 form-inline">
+                        <div class="col-4 text-right">
+                            <span>{{'richiesteParticolari'|translate}}</span>
+                        </div>
+                        <textarea type="text" rows="3" class="form-control form-control-sm col-8"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+            <div class="card-body panelBodySottoSezioneCustom">
+                <b>{{'labelCancellationPolicy'|translate}}</b>
+                <ul>
+                    <li><span>{{'cancellationPolicy1'|translate}}</span></li>
+                    <li><span>{{'cancellationPolicy2'|translate}}</span></li>
+                    <li><span>{{'cancellationPolicy3'|translate}}</span></li>
+                </ul>
+                <b>{{'labelCancellationPolicyPers'|translate}}</b>
+                <ul>
+                    <li><span>{{'cancellationPolicyPers'|translate}}</span></li>
+                </ul>
+                <b>{{'labelDichiarazione'|translate}}</b>
+                <ul>
+                    <li><span>{{'dichiarazione'|translate}}</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <span>* {{'labelAvviso'|translate}}</span>
+        </div>
+
+    </div>
+<button id='print-btn'>Start print process</button>
+
+</body>
+</html>

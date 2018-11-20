@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <link rel="import" href="../grafica/header.html">
+    <!-- import angularjs controller-->
+    <script type="text/javascript" src="../controller/nuovoTicketController.js"></script>
+    <title>Elenco Ticket</title>
+</head>
+
+<style>
+
+</style>
+
+<body class="background" ng-app="dscApp" ng-controller="nuovoTicketController">
+
+<div id="container" class="col-md-12 vertical-top-2">
+    <div class="panel panel-default panelCustom">
+
+        <div class="panelHeadingCustom">
+            <i class="glyphicon glyphicon-tags"></i> <label style="font-weight: bold">&nbsp; INSERIMENTO NUOVO TICKET</label>
+
+            <button type="button" class="btn btn-sm buttonDSC" ng-click="goToElencoTicket()" style="float: right" title="Torna ad Elenco Ticket"> <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"> </span>
+            </button>
+        </div>
+
+        <div class="panel-body">
+
+            <div id="reportInserimento" class="col-md-6 col-md-offset-3 text-center" ng-show="inserimentoEffettuato">
+                <div class="alert alert-success">
+                    Ticket inserito correttamente
+                </div>
+            </div>
+
+            <!-- SEZIONE INPUT DATI SINISTRA -->
+            <div id="inputDati1" class="col-md-6">
+
+                <label>Dati Cliente:</label>
+                <div class="form-group input-group" style="margin-bottom: 0px">
+                    <span class="input-group-addon"> Cliente </span>
+                    <input type="text" name="idCliente" id="idCliente" class="form-control" ng-model="ticket.idCliente"
+                           readonly style="background-color:#ffffff"/>
+                    <input type="text" name="cliente" id="cliente" class="form-control" ng-model="ticket.username"
+                           readonly style="background-color:#ffffff"/>
+                </div>
+
+                <br/>
+                <label>Titolo:</label>
+                <input type="text" name="titoloTicket" id="titoloTicket" class="form-control" ng-model="ticket.titoloTicket" required
+                       ng-class="{'inputRequired': !ticket.titoloTicket.length > 0 }"
+                       style="background-color:#ffffff; width: 100%"/>
+
+                <br/>
+                <div class="form-group">
+                    <label for="descrizioneTicket">Descrizione:</label>
+                    <textarea class="form-control" rows="5" id="descrizioneTicket" ng-model="ticket.descrizioneTicket" required
+                        ng-class="{'inputRequired': !ticket.descrizioneTicket.length > 0 }"
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <!-- SEZIONE INPUT DATI DESTRA -->
+            <div id="inputDati2" class="col-md-6">
+
+                <label>Tipologia:</label>
+                <select class="form-control" ng-model="ticket.tipologiaTicket" ng-options="t.ID as t.DESCRIZIONE for t in tipologia" required
+                        ng-class="{'inputRequired': ticket.tipologiaTicket === null }">
+                </select>
+
+                <br/>
+                <label>Priorit&aacute;:</label>
+                <select class="form-control" ng-model="ticket.prioritaTicket" ng-options="p.ID as p.DESCRIZIONE for p in priorita" required
+                        ng-class="{'inputRequired': ticket.prioritaTicket === null }">
+                </select>
+            </div>
+
+
+            <!-- SEZIONE PULSANTI -->
+            <div id="pulsanti" class="col-md-12 vertical-top-2 text-center">
+
+                <button type="button" class="btn buttonDSC" ng-click="inserisciTicket()"
+                        ng-show="ticket.titoloTicket !== null && ticket.titoloTicket !== undefined &&
+                                 ticket.descrizioneTicket !== null && ticket.descrizioneTicket !== undefined &&
+                                 ticket.tipologiaTicket !== null &&
+                                 ticket.prioritaTicket !== null">
+                    Inserisci
+                </button>
+
+                <p class="errorAlertColor"
+                      ng-show="ticket.titoloTicket === null || ticket.titoloTicket === undefined ||
+                                 ticket.descrizioneTicket === null || ticket.descrizioneTicket === undefined ||
+                                 ticket.tipologiaTicket === null ||
+                                 ticket.prioritaTicket === null">
+                    *Compilare i campi obbligatori
+                </p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

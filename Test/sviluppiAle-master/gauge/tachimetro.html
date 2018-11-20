@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"  id="ng-app" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Tachimetro</title>
+    <!-- import angularjs -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <!-- import bootstrap -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+
+    <script type="text/javascript" src="controller.js"></script>
+    <script type="text/javascript" src="lib/angularjs-gauge.min.js"></script>
+</head>
+<body ng-controller="AppController" >
+
+    <h1 class="text-center">Tachimetro</h1>
+    <br/><br/><br/>
+
+    <div class="col-sm-4 text-center">
+        <ng-gauge size="150" type="full" thick="5"
+              min="0" max="100" value="statoAvanzamento1"
+              cap="round" label="Avanzamento" append="%" duration="1000"
+              thresholds="thresholdOptions">
+        </ng-gauge>
+    </div>
+
+    <div class="col-sm-4 text-center">
+        <ng-gauge size="150" type="semi" thick="5"
+              min="0" max="100" value="statoAvanzamento2"
+              cap="round" label="Avanzamento" append="%" duration="1000"
+              thresholds="thresholdOptions">
+        </ng-gauge>
+    </div>
+
+    <div class="col-sm-4 text-center">
+        <ng-gauge size="150" type="arch" thick="5"
+              min="0" max="100" value="statoAvanzamento3"
+              cap="round" label="Avanzamento" append="%" duration="1000"
+              thresholds="thresholdOptions">
+        </ng-gauge>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<title>Curl</title>
+<body>
+
+<div ng-app="myApp" ng-controller="customersCtrl">
+
+    <h2>Chiamata curl tramite http.get</h2>
+    <ul>
+        <li ng-repeat="e in elenco">
+            {{ e.Name + ' - ' + e.City + '(' + e.Country + ')'}}
+        </li>
+    </ul>
+
+
+</div>
+
+<script>
+    var app = angular.module('myApp',[]);
+
+
+    app.controller('customersCtrl', function($scope, $http, $sce) {
+
+        $http.get("curl.php").then(function (response) {
+            console.log(response);
+            console.log(response.data.records);
+
+            $scope.elenco = response.data.records;
+        });
+
+    });
+</script>

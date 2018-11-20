@@ -1,0 +1,11 @@
+{
+  "database": {
+    "host": "127.0.0.1",
+    "user": "root",
+    "password": "alessandro",
+    "database": "snake"
+  },
+  "file": {
+    "path": "/data/score/score.txt"
+  }
+}

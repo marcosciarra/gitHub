@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>datepicker</title>
+
+    <script src="lib/angular.min.js"></script>
+
+    <script type="text/javascript" src="lib/moment.js"></script>
+    <script type="text/javascript" src="lib/moment-with-locales.js"></script>
+
+    <script type="text/javascript" src="lib/angular-moment-picker.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/angular-moment-picker.min.css">
+
+<body>
+
+<script>
+    var app = angular.module('myApp', ['moment-picker']);
+    app.controller('personCtrl', function($scope) {
+
+        moment.locale('it');
+        $scope.dataSelezionata = null;
+
+
+        $scope.controlla = function () {
+            console.log(moment($scope.dataSelezionata).format('L'));
+
+        }
+
+    });
+</script>
+
+
+<div ng-app="myApp" ng-controller="personCtrl">
+
+    <input type="date">
+
+    <div class="form-group col-sm-4">
+        <input class="form-control"
+               placeholder="Seleziona una data..."
+               moment-picker="dataSelezionata"
+               locale="it"
+               format="DD/MM/YYYY"
+               start-view="month"
+               today="true"
+               minDate="01/01/1900"
+               maxDate=""
+               ng-model="dataSelezionata"
+               setOnSelection="true"
+               ng-model-options="{ updateOn: 'blur' }"
+               data-change="controlla()">
+    </div>
+    {{dataSelezionata}}
+
+
+</div>
+</body>
+</html>

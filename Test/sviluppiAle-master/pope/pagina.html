@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html ng-app="myApp"> 
+<!-- ng-app: attributo di tag fondamentale per dire che stai applicando un'applicazione angular alla pagina, puoi metterlo a qualsiasi tag io di solito lo applico all'html per comodità. "myApp è il nome con cui ho chiamato l'app nella pagina js.-->
+
+	<head>
+		<title>AngularJS Demo</title>
+		<!--import Bootstrap-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<!--import AngularJS-->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<!--import modulo ngAnimate-->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+
+		<!--import controller per la pagina-->
+		<script type="text/javascript" src="controller.js"></script>
+	</head>
+
+	<body ng-controller="pageController">
+	<!-- ng-controller: attributo di tag fondamentale, tutto ciò che è contenuto nel tag in cui ho definito il controller è gestibile dalla pagina js. "pageController" è il nome con cui ho chiamato il controller nella pagina js.-->
+
+		<!--ESEMPIO 1: stampo il valore della variabile di scope, ci accedo con {{nomevariabile}} -->
+		<div id="esempio1">
+			<h3 class="text-center bg-primary">{{hello}}</h3>
+		</div>
+
+		<!--ESEMPIO 2: per fare databinding nel tag ng-model non servono {{}}-->
+		<div id="esempio2-3" class="col-md-4 col-md-offset-4" style="margin-top: 2%">
+
+			<div class="input-group">
+				 <span class="input-group-addon">&nbsp;&nbsp;&nbsp;Nome&nbsp;&nbsp;&nbsp;</span>
+				 <input type="text" class="form-control" ng-model="firstname">
+			</div>
+			<div class="input-group">
+				 <span class="input-group-addon">Cognome</span>
+				 <input type="text" class="form-control" ng-model="lastname">
+			</div>
+			<!--ESEMPIO 3: ng-show + call function-->
+			<button ng-show=lastname != "" ng-click="mostraNomeCognome()" class="btn btn-default" style="float: right;">Click</button>
+
+		</div>
+
+
+		<!--ESEMPIO 4: table ng-repeat (con ordinamento e ricerca) + call function con ng-show-->
+		<div id="esempio4" class="col-md-12" style="margin-top: 2%">
+
+			<div class="col-md-8">
+				<table class="table table-hover table-condensed">
+					<thead>
+						<tr>
+							<th>
+								<span class="input-group">
+									<span class="input-group-addon" ng-click="sortType = 'nome'; sortReverse = !sortReverse" style="cursor: pointer;"><i class="glyphicon glyphicon-sort"></i>Nome</span>
+									<input class="input-sm" type="text" ng-model="search.nome" style="width: 70%"/>
+								</span>
+							</th>
+							<th>
+								<span class="input-group">
+									<span class="input-group-addon" ng-click="sortType = 'cognome'; sortReverse = !sortReverse" style="cursor: pointer;"><i class="glyphicon glyphicon-sort"></i>Cognome</span>
+									<input class="input-sm" type="text" ng-model="search.cognome" style="width: 70%"/>
+								</span>
+							</th>
+							<th>
+								<span class="input-group">
+									<span class="input-group-addon" ng-click="sortType = 'age'; sortReverse = !sortReverse" style="cursor: pointer;"><i class="glyphicon glyphicon-sort"></i>Et&aacute;</span>
+									<input class="input-sm" type="number" ng-model="search.age" style="width: 50%"/>
+								</span>
+							</th>
+							<th class="text-center">
+								<button class="btn btn-danger" ng-click="reset()">reset</button>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="p in persone | orderBy:sortType:sortReverse | filter:search">
+							<td>{{p.nome}}</td>
+							<td>{{p.cognome}}</td>
+							<td>{{p.age}}</td>
+							<td class="text-center"><button ng-click="showInfo(p)" class="btn btn-default">seleziona</button></td> <!--alla function passo il parametro p, l'oggetto che ho in contesto-->
+						</tr>
+						<tr>
+							<td>
+								<input type="text" class="form-control" ng-model="new.nome" placeholder="nome"/>
+							</td>
+							<td>
+								<input type="text" class="form-control" ng-model="new.cognome" placeholder="cognome"/>
+							</td>
+							<td>
+								<input type="text" class="form-control" ng-model="new.age" placeholder="anni"/>
+							</td>
+							<td>
+								<button ng-show="new.nome != '' || new.cognome != '' || new.age != ''" class="btn btn-success" ng-click="addPerson()">inserisci</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div ng-show="personaSelezionata == null" class="alert alert-danger text-center col-md-4" role="alert">
+				<span><strong>Attenzione!</strong>Non hai ancora selezionato nessuno dall'elenco.</span>
+			</div>
+
+			<div ng-show="personaSelezionata != null" class="col-md-2 col-md-offset-1">
+
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<span>Hai selezionato:</span> <label> {{personaSelezionata.nome}}</label>
+					</div>
+					<div class="panel-body">
+						<label>Nome:</label><span> {{personaSelezionata.nome}}</span><br/>
+						<label>Cognome:</label><span> {{personaSelezionata.cognome}}</span><br/>
+						<label>Anni:</label><span> {{personaSelezionata.age}}</span><br/>
+						<div class="form-group form-inline">
+							<label>Insulta:</label>
+							<select ng-model="insulto" ng-click="insulta(insulto)" ng-options="i for i in insulti" class="form-control">insulta</select>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div id="insulto" ng-show="insultaPersona != null" class="col-md-12">
+			<div class="alert alert-info text-center" role="alert">
+				<span style="font-size: 30px">{{insultaPersona}}</span>
+			</div>
+		</div>
+
+	</body>
+</html>

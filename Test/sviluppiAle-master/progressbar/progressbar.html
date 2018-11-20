@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Progressbar</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+
+        $scope.percLavo = 35;
+
+        $scope.dinamycWidth = $scope.percLavo+"%";
+
+    });
+</script>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+
+<h2>PERCLAVO:</h2>
+
+<div class="progress">
+    <div class="progress-bar progress-bar-striped active progress-bar-danger" role="progressbar" ng-style="{ 'width' : dinamycWidth }" ng-show="percLavo < 33">
+        {{percLavo}}%
+    </div>
+    <div class="progress-bar progress-bar-striped active progress-bar-warning" role="progressbar" ng-style="{ 'width' : dinamycWidth }" ng-show="percLavo > 33 && percLavo < 66">
+        {{percLavo}}%
+    </div>
+    <div class="progress-bar progress-bar-striped active progress-bar-success" role="progressbar" ng-style="{ 'width' : dinamycWidth }" ng-show="percLavo > 66">
+        {{percLavo}}%
+    </div>
+</div>
+
+
+
+</body>
+
+</html>

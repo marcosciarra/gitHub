@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scheduler</title>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="http://javascript.daypilot.org/demo/js/daypilot-all.min.js?v=3068"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="schedulercsscustom.css" >
+    <!--import controller-->
+    <script type="text/javascript"  src="calendarioController.js"></script>
+</head>
+<body ng-app="aleApp" ng-controller="calendarioController">
+
+    <div style="float:left; width:160px">
+        <daypilot-navigator id="navigator" daypilot-config="navigatorConfig"></daypilot-navigator>
+    </div>
+    <div style="margin-left: 160px">
+        <daypilot-scheduler id="scheduler" daypilot-config="schedulerConfig" daypilot-events="events" ></daypilot-scheduler>
+    </div>
+
+    <div class="space">
+        New event:
+        <button ng-click="add()">Add</button>
+    </div>
+    <div class="space">
+        First event:
+        <button ng-click="move()">Move</button>
+        <button ng-click="rename()">Rename</button>
+    </div>
+    <div class="space">
+        <span class="bold">Scale:</span>
+        <a ng-click="scale('Day')" href="javascript:void(0)">Days</a>
+        <a ng-click="scale('Week')" href="javascript:void(0)">Weeks</a>
+        <span class="bold">Scroll to:</span>
+        <a ng-click="scrollTo('2015-01-09')" href="javascript:void(0)">2015-01-09</a>
+    </div>
+    <div class="space">
+        <div class="space">Event list:</div>
+        <ul>
+            <li ng-repeat="item in events">
+                {{item}}
+            </li>
+        </ul>
+        <div class="space">Selected events (click or Ctrl+click to select):</div>
+        <ul>
+            <li ng-repeat="item in selectedEvents">
+                {{item.text()}} - {{item.start()}}
+            </li>
+        </ul>
+    </div>
+
+
+</body>
+</html>

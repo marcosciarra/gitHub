@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <input type="date" ng-model="dataSelezionata"> {{dataSelezionata}}
+    <button ng-click="cambia()">converti</button>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+
+        $scope.dataSelezionata = "";
+
+        $scope.cambia = function(){
+            $scope.dataSelezionata = $scope.dataSelezionata.yyyymmdd();
+        }
+
+    });
+
+    Date.prototype.yyyymmdd = function() {
+        var mm = this.getMonth() + 1; // getMonth() is zero-based
+        var dd = this.getDate();
+
+        return [this.getFullYear(),
+            (mm>9 ? '' : '0') + mm,
+            (dd>9 ? '' : '0') + dd
+        ].join('');
+    };
+</script>
+
+</body>
+</html>
