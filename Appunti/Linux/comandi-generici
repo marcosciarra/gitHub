@@ -1,0 +1,29 @@
+_______________________________________________________________________________
+                        INSTALLAZIONE/DISINSTALLAZIONE
+_______________________________________________________________________________
+
+INSTALLARE / DISINSTALLARE UN PACCHETTO
+apt install PACCHETTO
+apt remove PACCHETTO
+
+_______________________________________________________________________________
+                                HELP
+_______________________________________________________________________________
+
+help comando --> esce l'help del comando
+man comando --> esce il manuale del comando
+info comando --> esce il manuale del comando (sudo apt info)
+
+_______________________________________________________________________________
+                                VARIABILI
+_______________________________________________________________________________
+
+è possibile dichiarare variabili:
+variabile="aaa"
+echo $variabile
+
+_______________________________________________________________________________
+                                ALIAS
+_______________________________________________________________________________
+
+alias --> alias elenco=ls .lah --color

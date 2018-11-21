@@ -1,0 +1,45 @@
+_______________________________________________________________________________
+                                CREARE/ELIMINARE CARTELLE
+_______________________________________________________________________________
+Creazione cartelle
+mkdir pippo
+
+Eliminare cartelle
+rmdir cartella
+
+_______________________________________________________________________________
+                                CREARE FILE
+_______________________________________________________________________________
+
+Creare un file
+touch pippo/nomefile
+touch nomefile
+Se devo creare un file con gli spazi : 
+touch "file con spazi"
+
+_______________________________________________________________________________
+                                SPOSTARE/ELIMINARE FILE
+_______________________________________________________________________________
+
+Spostare / Rinominave file
+mv cartell/file cartella2
+
+Eliminare file
+rm filename
+rm -r -f    -r --> eliminazione ricorsiva
+            -f --> elimina anche cartelle
+
+_______________________________________________________________________________
+                                ELENCO DEI FILE / CARTELLE
+_______________________________________________________________________________
+Mostrare contenuto directory
+ls      --> mostra contenuto
+ls -l   --> mostra permessi su cartelle/file
+ls -a   --> mostra anche i file nascosti
+ls -h   --> mostra le dimensioni dei file in formato più leggibile
+tree    --> mostra elenco di cartelle e file in struttura ad albero
+
+pwd --> mostra il percorso della dir in cui siamo
+
+echo file* -->tutti i file che iniziano con file
+echo file? -->tutti i file che iniziano con file ed hanno un solo carattere dopo
