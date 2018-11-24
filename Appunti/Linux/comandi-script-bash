@@ -1,0 +1,49 @@
+_______________________________________________________________________________
+                                FILE BASH
+_______________________________________________________________________________
+
+Con nano apro un FILE
+
+#!/bin/bash         --> per dire che il file è uno script bash
+#!/bin/sh           --> per dire che il file è uno script sh
+#!/bin/pyton        --> per dire che il file è uno script pyton
+
+Per poter far eseguire il file, dopo averlo salvato devo dare i permessi di esecuzione
+chmod +x script.sh
+Per eseguire il file
+./script.sh
+
+_______________________________________________________________________________
+
+nano script.sh
+#!/bin/bash
+titolo="Signor"                     --> variabile
+nome=$1                             --> variabile prima come parametro 1 dall'esterno
+cognome=$2
+
+echo Benvenuto $nome $cognome
+
+_______________________________________________________________________________
+                                    IF
+_______________________________________________________________________________
+Costrutto if anche in bash, si chiude con fi (attenzione agli spazi perchè indispenabili)
+if [[ $nome == "Marco ]]
+then
+    echo "Ciao Shaq"
+else
+    echo "Ciao, non ti conosco"
+fi
+_______________________________________________________________________________
+                                    FOR
+_______________________________________________________________________________
+Costrutto ciclo for
+for i in {1..5}
+do
+    echo "Conto $i"
+done
+
+for nomefile in $1/*                            -->passo com parametro la cartella in cui rinominare i file
+do
+    echo "Rinomino il file $nomefile"
+    mv  "$nomefile" "$nomefile"-old             --> rinomino il file con in aggiunta -old
+done
