@@ -1,0 +1,34 @@
+sudo --> prendere permessi di root
+su   --> serve per cambiare l'utente di riferimento...senza nulla root, con il nome, l'utente
+who  --> serve per sapre quali utenti sono collegati
+useradd NOMEUTENTE 
+    -c "Commento"    --> commento all'utente
+    -d /home/UTENTE  --> directory di home
+    -G sudo o wheel per far parte di sudo   --> dire a che gruppi appartiente
+
+password NUMEUTENTE  --> per assegnare una password all'utente
+
+userdel NOMEUTENTE   --> per eliminare utente ma tengo cartelle ( con -r elimina anche cartella)
+
+grouoadd NUOVOGRUPPO                    --> aggiungere un nuovo gruppo
+grouddel NUOVOGRUPPO                    --> eliminare un gruppo
+
+usermod NOMEUTENTE -aG NUOVOGRUPPO      --> associare un utente ad un gruppo
+
+PERMESSI
+
+i file/cartelle sono fatti così:
+
+- file          rwx(utente)     rwx(utente)     rwx(other)      utenteProprietario      gruppoProprietario         
+d cartella      lettura
+l link          scrttura
+                esecuzione
+chmod +x nomefile       --> mettere il permesso di esecuzione sul file
+
+per indicare a chi cambiare i permessi ho : 
+    u-->utente
+    g-->gruppo
+    o-->other -->gli altri
+
+
+    chmod +t NOMEFILE --> serve per creare un permesso speciale che il file può essere modificato o eliminato solo dall'utente che lo ha creato

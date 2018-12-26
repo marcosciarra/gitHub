@@ -1,0 +1,9 @@
+ip addr   --> vedere indirizzi di rete
+
+per modificre indirizzo IP --> ip addres change 192.168.1.8 eth0   --> nuovo ip su quale scheda di rete
+per fare la modifica definitivi bisogna farlo in /etc/network/interfaces
+
+host www.google.it  --> restituisce info del sito
+
+sudo nano /etc/hosts --> mi permette di dire come mi deve rispondere l'host mettendo un indirizzo, per
+esempio potre mettere : 127.0.0.1    www.google.com --> ogni volta che metto google mi risponde localhost
