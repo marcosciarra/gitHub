@@ -1,8 +1,19 @@
 <!DOCTYPE html>
-<html ng-app="affittiApp" ng-controller="homeController">
+<html ng-app="engine" ng-controller="engineController">
 
 <head>
     <link href="./lib/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <!-- import angularjs -->
+    <script type="text/javascript" src="./lib/angular.min.js"></script>
+    <script type="text/javascript" src="./lib/angular-animate.js"></script>
+
+    <script type="text/javascript" src="./controller/indexController.js"></script>
+
+
+    <!-- fontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
     <?php
     /**
@@ -20,63 +31,13 @@
     ?>
 </head>
 
-<body class="bgColor">
-<?php
-try {
-    $attribute = array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-    $pdo = new PDO(
-        'mysql:host=' . HOST . ';dbname=' . SCHEMA . ';charset=' . CHARSET,
-        USER,
-        PWD,
-        $attribute
-    );
-    $tabellaScelta = 'login';
-    /*-------------------------------------------ELENCO TABELLE-------------------------------------------------------*/
-    $query = 'SHOW TABLES';
-    echo "<br>";
-    echo "<div class='row'>";
-    foreach ($pdo->query($query)->fetchAll() as $app) {
-        echo "<div class='btn btn-primary col-md-2'>";
-        echo $app['Tables_in_' . SCHEMA];
-        echo "</div>";
-    }
-    echo "</div>";
+<body>
+<div ng-controller="engineController" data-ng-init="init()">
 
-    echo "<br><div class='text-center'>STRUTTURA TABELLA</div><br>";
-
-    $query = 'DESCRIBE ' . $tabellaScelta;
-    $result = $pdo->query($query)->fetchAll();
-    foreach ($result as $res) {
-        $nome = $res['Field'];
-        $tipoColonna = $res['Type'];
-        $collaction = $res['Collation'];
-        $notNull = $res['Null'];
-        $chiave = $res['Key'];
-        /*
-         * La chiave può essere :
-         * PRI --> primaria
-         * UNI --> Unica
-         * MUL --> multipla
-         */
-        $default = $res['Default'];
-        $tipo = $res['Extra'];  /* INFORMAZIONI EXTRA */
-        $tipo = $res['Privilages'];
-        $commenti = $res['Comment'];
-    }
-
-
-    echo "<br><div class='text-center'>INDICI</div><br>";
-
-    $query = 'SHOW INDEX FROM contratti';
-    $result = $pdo->query($query)->fetchAll();
-    foreach ($result as $res) {
-        $nome = $res['Key_name'];
-        $tipoColonna = $res['Type'];
-        $nomeColonna = $res['Column_name'];
-    }
-} catch (PDOException $e) {
-    die('Errore durante la connessione al database!: ' . $e->getMessage());
-}
-?>
-
+    <div class="row">
+        <div class="col-md-3">
+            <button class="btn btn-primary">aaa</button>
+        </div>
+    </div>
+</div>
 </body>

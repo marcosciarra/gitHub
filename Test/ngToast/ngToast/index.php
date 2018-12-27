@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="App" ng-controller="indexController">
 
-<head>
+<head>z
 <!-- import bootstrap 3 css -->
 <link href="../grafica/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <!-- import angularjs -->
