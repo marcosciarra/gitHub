@@ -1,5 +1,5 @@
 <?php
-require_once 'conf/costanti.php';
+
 /**
  * Funzione di connessione a PDO. La funzione consente di specificare il database a cui collegarsi.
  * Oltre questo, permette il passaggio dell'array indicizzato per i dati di connessione forzati composti da:

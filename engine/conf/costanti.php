@@ -13,3 +13,6 @@ define("PWD", 'Sciarra82');
 define("SCHEMA", "test1");
 define('CHARSET', 'latin1');
 
+
+define('SELECTNAMESPACE', 'Affitti');
+
