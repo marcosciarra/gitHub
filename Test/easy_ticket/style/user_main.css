@@ -1,0 +1,260 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,html {
+	margin:0px;
+	padding:0px;
+	height:100%;
+	font-family:Arial, Helvetica, sans-serif;	
+	color:#333;
+	font-size:small;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;	
+}
+
+a {
+	color:#B27000;
+	text-decoration:none;
+}
+
+a:hover {
+	text-decoration:underline;
+}
+
+.hidden-filter {
+	display:none;
+	visibility:hidden;
+}
+
+#header, .header_tab {
+	background-color:#267ED4;
+	height:45px;
+	float:left;
+	line-height:45px;
+	color:#FFF;
+	}	
+
+#header {
+	width:80%;
+}
+
+.header_tab {
+	width:10%;
+	text-align:center;
+}
+
+.header_tab:hover {
+	background-color:#2271be;
+}
+
+.header_tab a {
+	color:inherit;
+	text-decoration:none;
+	display:block;
+	padding:0px 20px;
+}
+
+.inner_padding {
+	padding:0px 20px;
+}
+
+.spacer {
+	clear:both;
+	height:2em;
+}
+
+#body {
+	width:50%;
+	margin:0 auto;
+}
+
+#body_left {
+	float:left;
+	width:20%;
+	box-sizing:border-box;
+	border-right:1px solid #CCC;
+}
+
+#inner_body_left {
+	padding:20px;
+}
+
+#body_center_60 {
+	float:left;
+	width:60%;
+}
+
+#body_center_80 {
+	float:left;	
+	width:80%;
+}
+
+.ticket_padding {
+	padding:20px;
+}
+
+#body_right {
+	float:left;
+	width:20%;
+	box-sizing:border-box;
+	border-left:1px solid #CCC;	
+}
+
+#body_right ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+#body_right ul li {
+	border-radius:5px;
+	margin:10px 0;
+	color:#FFF;
+}
+
+#body_right ul li a {
+	display:block;
+	padding:10px;	
+	color:#FFF;
+}
+
+#body_right ul li a:hover {
+	font-weight:bold;
+}
+
+#positive {
+	background-color:#6C0;
+}
+
+#neutrel {
+	background-color:#FC0;
+}
+
+#negative {
+	background-color:#F30;
+}
+
+/* block for rating block selected */
+.selected {
+	display:block;
+	padding:10px;	
+}
+
+/* block for rating blocks not selected */
+.disabled {
+	opacity:0.3;
+	display:block;
+	padding:10px;	
+}
+
+#form_background {
+	background-color:#F9F9F9;
+	border-top:1px solid #CCC;
+	width:100%;
+}
+
+input[type="text"] ,input[type="email"], select, textarea {
+	color:#666;
+	background-color:#FFF;
+	width:75%;
+	width:calc(80% - 12px);
+	font-size:inherit;
+	border:1px solid #AAA;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	padding:5px;
+	box-shadow: inset 0 1px 2px #DDD;
+	-moz-box-shadow: inset 0 1px 2px #DDD;
+	-webkit-box-shadow: inset 0 1px 2px #DDD;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;	
+	border-radius:0px;		
+}
+
+select {	
+	width:75%;
+	width:calc(81.5% - 12px);
+	background:url(../img/select-arrow.png) no-repeat right;
+	background-color:#FFFFFF;
+    text-indent: 0.01px;
+    text-overflow: '';
+}
+
+input[type="submit"] {
+	font-size:inherit;
+	color:#FFF;
+	background-color:#267ED4;
+	padding:5px;
+	border:none;
+	cursor:pointer;
+	-webkit-appearance: none;
+	-moz-appearance:none;
+}
+
+input[type="submit"]:hover {
+	background-color:#2271be;
+}
+
+label {
+	display:inline-block;
+	clear:both;
+	float:left;
+	width:20%;
+	font-weight:bold;
+	padding:8px 0px;
+}
+
+.label_checkbox {
+	padding-left:20%;
+}
+
+textarea {
+	height:150px;
+}
+
+fieldset {
+	border:1px solid #CCC;
+}
+
+.reply_textarea {
+	border:1px solid #CCC;
+}
+
+.tracking_inputs {
+	padding:10px !important;
+}
+
+
+.font_large {
+	font-size:large;
+}
+
+.font_xlarge {
+	font-size:xx-large;
+	font-weight:bold;
+}
+
+.fa {
+	font-size:large;
+}
+
+.error {
+	color:#F30;
+}
+
+hr {
+	border: 0;
+    height: 0;
+    border-top: 1px dashed #CCC;
+	padding:0px;
+	margin:0px;
+}
+
+#footer {
+	height:45px;
+	clear:both;
+	border-top:1px solid #CCC;	
+	text-align:right;
+	padding-right:20px;
+	font-size:small;
+}

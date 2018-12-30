@@ -507,7 +507,7 @@ function insertPdo($strTabella,$arrayCampi,$arrayValori,$pdo=null,$boolUltimoIns
     //preparo la query
     $queryHandler=$pdo->prepare("INSERT INTO {$strTabella} (".implode(',',$arrayCampi).") VALUES ({$strPosizioni})");
 
-    //piccolo accorgimento per non ricopiare la struttura in base alla matrice di insert
+    //piccolo accorgimento per non ricopiare la toArrayAssoc in base alla matrice di insert
     $intNumRighe=($boolMatrice)?count($arrayValori):1;
     if ($boolConnessione and $boolAlteraTransazione){
         try{ //eseguo la transazione

@@ -78,6 +78,18 @@ function engineTabelle($request)
 
         $modello->costruttore();
 
+        $modello->findAll();
+
+        $modello->primayKey();
+        $modello->indexKey();
+
+        $modello->toArrayAssoc();
+        $modello->createObjKeyArray($request->nomeTabella);
+        $modello->createKeyArrayFromPositional();
+        $modello->getEmptyDbKeyArray();
+        $modello->getListColumns($request->nomeTabella);
+        $modello->createTable();
+
 //        $modello->metodiTabella();
 //        $modello->indiciTabella();
         $modello->getSetTabella();
