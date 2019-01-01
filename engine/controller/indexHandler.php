@@ -98,29 +98,6 @@ function engineTabelle($request)
 
         $modello->chiudiFile();
 
-//        /*-------------------------------------------APRO FILE------------------------------------------------------*/
-//
-//
-//        $tabellaModel = fopen("../output/" . $nomeTabella . "Model.php", "w");
-//
-//        /*-------------------------------------------ELENCO COLONNE---------------------------------------------------*/
-//
-//        $query = 'DESCRIBE ' . $request->nomeTabella;
-//        $result = $pdo->query($query)->fetchAll();
-//        foreach ($result as $res) {
-//            creaMetodi($request->nomeTabella, $res);
-//        }
-//        /*-------------------------------------------ELENCO INDICI----------------------------------------------------*/
-//
-//        $query = 'SHOW INDEX FROM ' . $request->nomeTabella;
-//        $result = $pdo->query($query)->fetchAll();
-//        foreach ($result as $res) {
-//            creaIndici($request->nomeTabella, $res);
-//        }
-//        /*-------------------------------------------CHIUDO FILE------------------------------------------------------*/
-//
-//        fclose($tabellaModel);
-
         $result['status'] = 'ok';
 
         return json_encode($result);

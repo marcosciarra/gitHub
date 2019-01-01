@@ -192,11 +192,13 @@ class Engine
     public function creaAttributi()
     {
         $this->enter();
-        foreach ($this->descrizioneTabella as $app) {
-            fwrite($this->file, "/** @var */");
-            $this->enter();
-            fwrite($this->file, "protected \$" . $this->cambiaNomeTabellaAttributo($app['Field']) . ";");
-            $this->enter();
+        if (isset($this->descrizioneTabella)) {
+            foreach ($this->descrizioneTabella as $app) {
+                fwrite($this->file, "/** @var */");
+                $this->enter();
+                fwrite($this->file, "protected \$" . $this->cambiaNomeTabellaAttributo($app['Field']) . ";");
+                $this->enter();
+            }
         }
     }
 
@@ -221,12 +223,48 @@ class Engine
         $this->enter();
         fwrite($this->file, "/*---------------------------------------------------- INDEX -----------------------------------------------------*/");
         $this->enter();
-        foreach ($this->indiciTabella as $app) {
-            if ($app['Non_unique'] == 1) {
-                $this->find($this->cambiaNomeTabellaAttributo($app['Key_name']), $app['Column_name'], $app['Key_name']);
-//                $this->delete($this->cambiaNomeTabellaAttributo($app['Key_name']), $app['Column_name'], $app['Key_name']);
+        $app = [];
+        for ($i = 0; $i < count($this->indiciTabella); $i++) {
+            if ($this->indiciTabella[$i]['Key_name'] != "PRIMARY") {
+                $nomeIndice = $this->indiciTabella[$i]['Key_name'];
+                $colonne = [];
+                $colonne[] = $this->indiciTabella[$i]['Column_name'];
+                if ($i < count($this->indiciTabella) - 1) {
+                    for ($j = $i + 1; $j < count($this->indiciTabella); $j++) {
+                        if ($nomeIndice == $this->indiciTabella[$j]['Key_name']) {
+                            $colonne[] = $this->indiciTabella[$j]['Column_name'];
+                            array_splice($this->indiciTabella, $j, 1);
+                        }
+                    }
+                }
+                $app[0] = $nomeIndice;
+                $app[1] = $colonne;
+                $this->findIndex($app);
             }
         }
+    }
+
+
+    private function findIndex($nomi)
+    {
+        $variabili = '';
+        $condizione = '';
+        $flag = false;
+        foreach ($nomi[1] as $app) {
+            if ($flag == true) $variabili = $variabili . ',';
+            if ($flag == true) $condizione = $condizione . ' AND ';
+            if ($flag == false) $flag = true;
+            $variabili = $variabili . "\$" . $this->cambiaNomeTabellaAttributo($app);
+            $condizione = $condizione . $app . "=?";
+        }
+        fwrite($this->file, "public function findBy" . $this->cambiaNomeTabellaAttributo(ucfirst($nomi[0])) . "(" . $variabili . " ,\$typeResult = self::FETCH_OBJ)");
+        fwrite($this->file, "{");
+        fwrite($this->file, "\$query = \"SELECT * FROM \$this->tableName USE INDEX(" . $nomi[0] . ") WHERE " . $condizione . " \";");
+        fwrite($this->file, "if (\$this->whereBase) \$query .= \" AND \$this->whereBase\";");
+        fwrite($this->file, "if (\$this->orderBase) \$query .= \" ORDER BY \$this->orderBase\";");
+        fwrite($this->file, "return \$this->createResultArray(\$query, array(" . $variabili . "), \$typeResult);");
+        fwrite($this->file, "}");
+        $this->enter();
     }
 
 
