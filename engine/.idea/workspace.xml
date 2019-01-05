@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="573df145-a77d-45c5-8595-2885b670a6de" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/esempi/FatturazioneDettagliModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/class/Engine.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Engine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/indexController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/indexController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/indexHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/indexHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/esempio/AggiornamentoF24.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/esempio/AggiornamentoF24Model.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/esempio/Contratti.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/esempio/ContrattiModel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/AggiornamentoF24.php" beforeDir="false" afterPath="$PROJECT_DIR$/output/AggiornamentoF24.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/AggiornamentoF24Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/output/AggiornamentoF24Model.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +13,26 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/class/Engine.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="503" column="120" selection-start-line="503" selection-start-column="120" selection-end-line="503" selection-end-column="120" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controller/indexHandler.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="58" column="31" lean-forward="true" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -32,7 +43,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Colonna</find>
       <find>../_lib/angularlib</find>
       <find>pdo</find>
       <find>nameSpace</find>
@@ -46,10 +56,23 @@
       <find>findbyid</find>
       <find>findByIdxCodiceFlussoIdImpostaRegistro</find>
       <find>delete</find>
-      <find>$this-&gt;createTable</find>
       <find>findin</find>
       <find>tru</find>
       <find>findbyidx</find>
+      <find>function co</find>
+      <find>function __con</find>
+      <find>@var</find>
+      <find>cestin</find>
+      <find>nascitaStato</find>
+      <find>list</find>
+      <find>tipoass</find>
+      <find>getTipoAssoggettazioneValuesList</find>
+      <find>getTipoAssoggettazione</find>
+      <find>show</find>
+      <find>$this-&gt;createTable</find>
+      <find>true</find>
+      <find>error_log</find>
+      <find>getse</find>
     </findStrings>
     <replaceStrings>
       <replace>./lib</replace>
@@ -75,6 +98,8 @@
         <option value="$PROJECT_DIR$/controller/indexHandler.php" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/controller/indexController.js" />
+        <option value="$PROJECT_DIR$/esempi/FatturazioneTestaModel.php" />
+        <option value="$PROJECT_DIR$/output/FatturazioneTestaModel.php" />
         <option value="$PROJECT_DIR$/class/Engine.php" />
       </list>
     </option>
@@ -106,6 +131,11 @@
             <path>
               <item name="engine" type="b2602c69:ProjectViewProjectNode" />
               <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="esempi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
               <item name="output" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -122,6 +152,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/esempi" />
       <recent name="$PROJECT_DIR$/lib" />
       <recent name="$PROJECT_DIR$/esempio" />
     </key>
@@ -156,16 +187,18 @@
       <workItem from="1546114458433" duration="6856000" />
       <workItem from="1546175568700" duration="5088000" />
       <workItem from="1546350795755" duration="3780000" />
+      <workItem from="1546672527169" duration="7273000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40801000" />
+    <option name="totallyTimeSpent" value="48074000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22087745" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.22390318" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -202,17 +235,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/output/Aggiornamento_f24.php" />
     <entry file="file://$PROJECT_DIR$/output/0.php" />
-    <entry file="file://$PROJECT_DIR$/esempio/Contratti.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="46" column="4" lean-forward="true" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
-          <folding>
-            <element signature="e#6#126#0#PHP" expanded="true" />
-            <element signature="e#197#238#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/esempio/Contratti.php" />
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/PDO/PDO.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -237,38 +260,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/esempio/ContrattiModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="198" selection-start-line="197" selection-end-line="198" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/esempio/AggiornamentoF24Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="110" column="82" lean-forward="true" selection-start-line="110" selection-start-column="82" selection-end-line="110" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/AggiornamentoIstatModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/esempio/ContrattiModel.php" />
+    <entry file="file://$PROJECT_DIR$/esempio/AggiornamentoF24Model.php" />
+    <entry file="file://$PROJECT_DIR$/output/AggiornamentoIstatModel.php" />
     <entry file="file://$PROJECT_DIR$/output/AggiornamentoF24Model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/indexHandler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
         </state>
       </provider>
     </entry>
@@ -290,20 +288,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output/AnagraficheModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="88" column="14" selection-start-line="88" selection-start-column="14" selection-end-line="88" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/Anagrafiche.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/esempi/FatturazioneDettagli.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/esempi/FatturazioneDettagliModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="30" column="9" lean-forward="true" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/AnagraficheModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="97" column="23" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/esempi/AnagraficheModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="66" column="21" selection-start-line="66" selection-start-column="15" selection-end-line="66" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/esempi/FatturazioneTestaModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="737" column="42" selection-start-line="737" selection-start-column="42" selection-end-line="737" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/FatturazioneTestaModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="548" column="48" selection-start-line="548" selection-start-column="48" selection-end-line="548" selection-end-column="48" />
+          <folding>
+            <element signature="e#6#42#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/indexHandler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="58" column="31" lean-forward="true" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/class/Engine.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="194" column="43" selection-start-line="194" selection-start-column="43" selection-end-line="194" selection-end-column="43" />
+        <state relative-caret-position="391">
+          <caret line="503" column="120" selection-start-line="503" selection-start-column="120" selection-end-line="503" selection-end-column="120" />
         </state>
       </provider>
     </entry>

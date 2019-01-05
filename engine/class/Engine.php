@@ -194,7 +194,31 @@ class Engine
         $this->enter();
         if (isset($this->descrizioneTabella)) {
             foreach ($this->descrizioneTabella as $app) {
-                fwrite($this->file, "/** @var */");
+                $type = '';
+                switch ($app['Type']) {
+                    case strpos($app['Type'], 'int'):
+                        $type = 'integer';
+                        break;
+                    case strpos($app['Type'], 'tinyint'):
+                        $type = 'integer';
+                        break;
+                    case strpos($app['Type'], 'varchar'):
+                        $type = 'string';
+                        break;
+                    case strpos($app['Type'], 'date'):
+                        $type = 'string';
+                        break;
+                    case strpos($app['Type'], 'enum'):
+                        $type = 'string (enum)';
+                        break;
+                    case strpos($app['Type'], 'json'):
+                        $type = 'objext (string)';
+                        break;
+                    case strpos($app['Type'], 'double'):
+                        $type = 'double';
+                        break;
+                }
+                fwrite($this->file, "/** @var " . $type . " */");
                 $this->enter();
                 fwrite($this->file, "protected \$" . $this->cambiaNomeTabellaAttributo($app['Field']) . ";");
                 $this->enter();
@@ -453,11 +477,22 @@ class Engine
 
         $this->enter();
         foreach ($this->descrizioneTabella as $app) {
-            /*----------------------------------------------GET-------------------------------------------------------*/
-            fwrite($this->file, "/** @return " . $app['Type'] . " */");
-            $this->enter();
-            fwrite($this->file, "public function " . $this->cambiaNomeTabellaAttributo("get_" . $app['Field']) . "(){return \$this->" . $this->cambiaNomeTabellaAttributo($app['Field']) . ";}");
-            $this->enter();
+            if (strpos($app['Type'], 'enum') == 0) {
+                /*----------------------------------------------GET ENUM----------------------------------------------*/
+                fwrite($this->file, "/** @return " . $app['Type'] . " */");
+                $this->enter();
+                fwrite($this->file, "public function " . $this->cambiaNomeTabellaAttributo("get_" . $app['Field']) . "(\$decode = false){");
+                fwrite($this->file, "return (\$decode) ? \$this->" . $this->cambiaNomeTabellaAttributo("get_" . $app['Field']) . "ValuesList()[\$this->" . $this->cambiaNomeTabellaAttributo($app['Field']) . "] : \$this->" . $this->cambiaNomeTabellaAttributo($app['Field']) . ";");
+                fwrite($this->file, "}");
+                $this->enter();
+            } else {
+                /*----------------------------------------------GET --------------------------------------------------*/
+                fwrite($this->file, "/** @return " . $app['Type'] . " */");
+                $this->enter();
+                fwrite($this->file, "public function " . $this->cambiaNomeTabellaAttributo("get_" . $app['Field']) . "(){return \$this->" . $this->cambiaNomeTabellaAttributo($app['Field']) . ";}");
+                $this->enter();
+            }
+
             /*----------------------------------------------SET-------------------------------------------------------*/
             fwrite($this->file, "/** @param string \$" . $this->cambiaNomeTabellaAttributo($app['Field']) . " " . $this->cambiaNomeTabellaAttributo($app['Field'], true) . "\n@param int \$encodeType*/");
             $this->enter();
@@ -465,5 +500,37 @@ class Engine
             $this->enter();
             $this->enter();
         }
+
+        /*-------------------------------------------------VALORI DA COMMENTO ENUM------------------------------------*/
+        $capo=chr(10);
+        $tabella = explode($capo, $this->createTable);
+        foreach ($tabella as $tab) {
+            if (strpos($tab, 'enum') > 0) {
+                fwrite($this->file, "public function " . $this->cambiaNomeTabellaAttributo("get_" . $app['Field']) . "ValuesList(\$json = false){");
+                fwrite($this->file, "\$kv = [");
+
+                $str = explode('COMMENT \'', $tab)[1];
+                $str=substr($str,0,-2);
+                $enum = explode('\\n', $str);
+
+                $flag=false;
+                foreach ($enum as $val){
+                    if ($flag == true) fwrite($this->file, " , ");;
+                    if ($flag == false) $flag = true;
+                    $keyVal = explode('=', $val);
+                    fwrite($this->file, "'".trim($keyVal[0])."'");
+                    fwrite($this->file, " => ");
+                    fwrite($this->file, "'".trim($keyVal[1])."'");
+                }
+
+                fwrite($this->file, "];");
+                fwrite($this->file, "return (\$json) ? \$this->createJsonKeyValArray(\$kv) : \$kv;");
+                fwrite($this->file, "}");
+                $this->enter();
+            }
+        }
+
+
+
     }
 }
