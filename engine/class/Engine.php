@@ -49,12 +49,11 @@ class Engine
 
         $attribute = array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
         $this->con = new PDO(
-            'mysql:host=' . HOST . ';dbname=' . SCHEMA . ';charset=' . CHARSET,
+            'mysql:host=' . HOST . ':' . PORT . ';dbname=' . SCHEMA . ';charset=' . CHARSET,
             USER,
             PWD,
             $attribute
         );
-
 
         if ($this->model == true) {
             $this->pathOutput = "../output/" . $this->nomeTabellaClasse . "Model.php";
@@ -67,7 +66,6 @@ class Engine
         } else {
             $this->pathOutput = "../output/" . $this->nomeTabellaClasse . ".php";
         }
-
     }
 
 

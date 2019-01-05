@@ -15,10 +15,9 @@ function caricaDati($request)
 {
     $result = array();
     try {
-
         $attribute = array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
         $pdo = new PDO(
-            'mysql:host=' . HOST . ';dbname=' . SCHEMA . ';charset=' . CHARSET,
+            'mysql:host=' . HOST . ':' . PORT . ';dbname=' . SCHEMA . ';charset=' . CHARSET,
             USER,
             PWD,
             $attribute
@@ -43,7 +42,7 @@ function engineTabelle($request)
 
         $attribute = array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
         $pdo = new PDO(
-            'mysql:host=' . HOST . ';dbname=' . SCHEMA . ';charset=' . CHARSET,
+            'mysql:host=' . HOST . ':' . PORT . ';dbname=' . SCHEMA . ';charset=' . CHARSET,
             USER,
             PWD,
             $attribute
@@ -105,7 +104,6 @@ function engineTabelle($request)
         echo 'Caught exception: ', $e->getMessage(), "\n";
     }
 }
-
 
 
 function creaMetodi($nomeFile, $dati)
