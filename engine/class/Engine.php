@@ -500,7 +500,7 @@ class Engine
         }
 
         /*-------------------------------------------------VALORI DA COMMENTO ENUM------------------------------------*/
-        $capo=chr(10);
+        $capo = chr(10);
         $tabella = explode($capo, $this->createTable);
         foreach ($tabella as $tab) {
             if (strpos($tab, 'enum') > 0) {
@@ -508,17 +508,17 @@ class Engine
                 fwrite($this->file, "\$kv = [");
 
                 $str = explode('COMMENT \'', $tab)[1];
-                $str=substr($str,0,-2);
+                $str = substr($str, 0, -2);
                 $enum = explode('\\n', $str);
 
-                $flag=false;
-                foreach ($enum as $val){
+                $flag = false;
+                foreach ($enum as $val) {
                     if ($flag == true) fwrite($this->file, " , ");;
                     if ($flag == false) $flag = true;
                     $keyVal = explode('=', $val);
-                    fwrite($this->file, "'".trim($keyVal[0])."'");
+                    fwrite($this->file, "'" . trim($keyVal[0]) . "'");
                     fwrite($this->file, " => ");
-                    fwrite($this->file, "'".trim($keyVal[1])."'");
+                    fwrite($this->file, "'" . trim($keyVal[1]) . "'");
                 }
 
                 fwrite($this->file, "];");
@@ -527,7 +527,6 @@ class Engine
                 $this->enter();
             }
         }
-
 
 
     }
