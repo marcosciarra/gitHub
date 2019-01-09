@@ -40,15 +40,6 @@ function engineTabelle($request)
     $result = array();
     try {
 
-        $attribute = array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-        $pdo = new PDO(
-            'mysql:host=' . HOST . ':' . PORT . ';dbname=' . SCHEMA . ';charset=' . CHARSET,
-            USER,
-            PWD,
-            $attribute
-        );
-
-
         /*--------------------------------------------CLASSE----------------------------------------------------------*/
         $classe = new Engine($request->nomeTabella, false, SELECTNAMESPACE);
         $classe->apriFile();
@@ -89,8 +80,6 @@ function engineTabelle($request)
         $modello->getListColumns($request->nomeTabella);
         $modello->createTable();
 
-//        $modello->metodiTabella();
-//        $modello->indiciTabella();
         $modello->getSetTabella();
 
         $modello->closeClass();
@@ -103,36 +92,6 @@ function engineTabelle($request)
     } catch (Exception $e) {
         echo 'Caught exception: ', $e->getMessage(), "\n";
     }
-}
-
-
-function creaMetodi($nomeFile, $dati)
-{
-    $nome = $dati['Field'];
-    $tipoColonna = $dati['Type'];
-    $collaction = $dati['Collation'];
-    $notNull = $dati['Null'];
-    $chiave = $dati['Key'];
-    /*
-     * La chiave può essere :
-     * PRI --> primaria
-     * UNI --> Unica
-     * MUL --> multipla
-     */
-    $default = $dati['Default'];
-    $tipo = $dati['Extra'];  /* INFORMAZIONI EXTRA */
-    $tipo = $dati['Privilages'];
-    $commenti = $dati['Comment'];
-
-}
-
-
-function creaIndici($nomeFile, $dati)
-{
-    $nome = $dati['Key_name'];
-    $tipoColonna = $dati['Type'];
-    $nomeColonna = $dati['Column_name'];
-
 }
 
 
