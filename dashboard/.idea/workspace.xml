@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f955cf7c-7fbc-44c9-a906-1756fefa8892" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../dashboard/form/dashboard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../dashboard/form/home.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../dashboard/form/upload.html" afterDir="false" />
+    <list default="true" id="96252792-96c4-4b97-b7dc-ca69f706b9f0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/form/dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/form/home.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/form/upload.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../PannelloAffitti/.idea/PannelloAffitti.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../PannelloAffitti/.idea/encodings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../PannelloAffitti/.idea/misc.xml" beforeDir="false" />
@@ -20,9 +20,8 @@
       <change beforePath="$PROJECT_DIR$/../PannelloAffitti/lib/angular.min.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../PannelloAffitti/lib/bootstrap.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../PannelloAffitti/lib/pdo.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/costanti.php" beforeDir="false" afterPath="$PROJECT_DIR$/conf/costanti.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,17 +30,38 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/conf/costanti.php">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/form/home.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="634">
+              <caret line="277" column="22" lean-forward="true" selection-start-line="277" selection-start-column="22" selection-end-line="277" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/form/dashboard.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="583">
+              <caret line="67" column="6" selection-start-line="67" selection-start-column="6" selection-end-line="67" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>clienti</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -49,16 +69,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/controller/indexHandler.php" />
+        <option value="$PROJECT_DIR$/class/Engine.php" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/conf/costanti.php" />
+        <option value="$PROJECT_DIR$/form/upload.html" />
+        <option value="$PROJECT_DIR$/form/home.php" />
+        <option value="$PROJECT_DIR$/form/dashboard.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1600" />
-    <option name="width" value="1680" />
-    <option name="height" value="1050" />
+    <option name="y" value="27" />
+    <option name="width" value="1600" />
+    <option name="height" value="873" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -70,23 +92,13 @@
         <subPane>
           <expand>
             <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="class" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="conf" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="form" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -96,10 +108,16 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dashboard" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/form" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -118,25 +136,25 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f955cf7c-7fbc-44c9-a906-1756fefa8892" name="Default Changelist" comment="" />
-      <created>1547061939082</created>
+      <changelist id="96252792-96c4-4b97-b7dc-ca69f706b9f0" name="Default Changelist" comment="" />
+      <created>1547044101228</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1547061939082</updated>
-      <workItem from="1547061941973" duration="2633000" />
-      <workItem from="1547105412935" duration="22000" />
-      <workItem from="1547130522682" duration="285000" />
+      <updated>1547044101228</updated>
+      <workItem from="1547044102556" duration="89000" />
+      <workItem from="1547105429888" duration="2451000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2940000" />
+    <option name="totallyTimeSpent" value="2540000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1600" y="0" width="1680" height="1050" extended-state="6" />
+    <frame x="0" y="27" width="1600" height="873" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24357405" />
+      <window_info id="Gulp" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1969112" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -161,27 +179,42 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/controller/indexController.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/indexHandler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/class/Engine.php" />
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="221">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/conf/costanti.php">
+    <entry file="file://$PROJECT_DIR$/pages/blank.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="396">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/form/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/form/upload.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/form/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="634">
+          <caret line="277" column="22" lean-forward="true" selection-start-line="277" selection-start-column="22" selection-end-line="277" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/form/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="583">
+          <caret line="67" column="6" selection-start-line="67" selection-start-column="6" selection-end-line="67" selection-end-column="6" />
         </state>
       </provider>
     </entry>
