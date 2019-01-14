@@ -1,0 +1,152 @@
+
+<title>Utenti</title>
+
+<div ng-controller="utentiController" data-ng-init="init()">
+
+    <div id="containerUtenti" class="panel panel-custom border">
+        <div class="panel-heading text-center panelHeaderSezioneCustom">
+            <div class="row padding0">
+                <span class="col-md-1 text-left">
+                    <button type="button" class="btn btn-sm pointer headerPageButton" title="Configurazioni"
+                            ng-click="indietro('configurazioni')">
+                        <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
+                    </button>
+                </span>
+                <span class="col-md-10 titoloSezione">
+                    UTENTI
+                    <button type="button" class="btn btn-sm pointer headerPageButton"
+                            ng-show="livello == 'SU' || livello == 'A'"
+                            ng-click="modificaUtente(0)"
+                            title="Nuovo contratto">
+                        <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+                    </button>
+                </span>
+                <span class="col-md-1 text-right">
+                    <button type="button" class="btn btn-sm pointer headerPageButton" title="Aggiorna pagina"
+                            ng-show="showRefresh" ng-click="aggiornaPagina()">
+                        <i class="fa fa-refresh fa-2x" aria-hidden="true"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="text-center" ng-class="{'backgroundLoaderPart' : visible, 'backgroundLoaderFull' : !visible}"
+             ng-show="!caricamentoCompletato">
+            <div class="containerLoader">
+                <div class="loader"></div>
+            </div>
+        </div>
+
+        <div id="panelUtenti" class="panel" ng-show="caricamentoCompletato">
+            <table class="table table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th class="col-xs-1">Codice</th>
+                    <th class="col-xs-1">Nome Utente</th>
+                    <th class="col-xs-3">&nbsp;</th>
+                    <th class="col-xs-3">e-mail</th>
+                    <th class="col-xs-2 text-center">Tipo Utente</th>
+                    <th class="col-xs-2"></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <!--
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input type="text" class="col-md-12 form-control input-sm" placeholder="Nome Utente"
+                               ng-change="controllaCampi()" ng-model="utente.username">
+                    </td>
+                    <td>
+                        <input type="password" class="col-md-12 form-control input-sm" placeholder="Password"
+                               ng-change="controllaCampi()" ng-model="utente.password">
+                    </td>
+                    <td>
+                        <input type="email" class="col-md-12 form-control input-sm" placeholder="E-Mail"
+                               ng-change="controllaCampi()" ng-model="utente.email">
+                    </td>
+                    <td>
+                        <select class="col-md-12 form-control input-sm" ng-model="utente.tipo_utente">
+                            <option value="SU" ng-show="livello == 'SU'">SUPER USER</option>
+                            <option value="A" ng-show="livello == 'SU' || livello == 'A'">AMMINISTRATORE</option>
+                            <option value="U">UTENTE</option>
+                        </select>
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-success" title="Salva"
+                                ng-click="salvaDati(utente,true)"
+                                ng-show="datiValidi">
+                            <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+-->
+                <tr ng-repeat="u in elencoUtenti track by $index">
+                    <td>{{u.id}}</td>
+                    <td>
+                        <!--
+                        <input type="text" class="col-md-12 form-control input-sm" placeholder="Nome Utente"
+                               ng-change="controllaCampiModifica(u)" ng-model="u.username">
+                               -->
+                        <span>{{u.username}}</span>
+                    </td>
+                    <td>
+                        {{u.nome}} {{u.cognome}}
+                        <!--
+                        <input type="password" class="col-md-12 form-control input-sm" placeholder="Password"
+                               ng-change="controllaCampiModifica(u)" ng-model="u.password">
+                               -->
+                        &nbsp;
+                    </td>
+                    <td>
+                        <!--
+                        <input type="email" class="col-md-12 form-control input-sm" placeholder="E-Mail"
+                               ng-change="controllaCampiModifica(u)" ng-model="u.email">
+                               -->
+                        {{u.email}}
+                    </td>
+                    <td>
+                        <select class="col-md-12 form-control input-sm" ng-model="u.tipo_utente" disabled>
+                            <option value="SU" ng-show="livello == 'SU'">SUPER USER</option>
+                            <option value="A" ng-show="livello == 'SU' || livello == 'A'">AMMINISTRATORE</option>
+                            <option value="U">UTENTE</option>
+                        </select>
+                    </td>
+                    <td class="text-center">
+                        <!--
+                        <button class="btn btn-sm btn-success" title="Salva"
+                                ng-click="modificaUtente(u)">
+                            <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>
+                        </button>
+                        -->
+                        <!--
+                        <button class="btn btn-sm btn-success" title="Salva"
+                                ng-click="modificaUtente(u.id, u.tipo_utente)"
+                                ng-show="idPulsante == u.id">
+                            <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>
+                        </button>
+                        -->
+                        <button class="btn btn-sm btn-info" title="Modifica"
+                                ng-show="u.id == idUtenteFromSession ||
+                                (!u.bloccato && (livello == 'SU' || livello == 'A'))"
+                                ng-click="modificaUtente(u.id)">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" title="Blocca"
+                                ng-show="!u.bloccato && (livello == 'SU' || livello == 'A')"
+                                ng-click="bloccaUtente(u.id)" >
+                            <i class="fa fa-ban fa-lg" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn-sm btn-success" title="Attiva"
+                                ng-show="u.bloccato && (livello == 'SU' || livello == 'A')"
+                                ng-click="bloccaUtente(u.id)" >
+                            <i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

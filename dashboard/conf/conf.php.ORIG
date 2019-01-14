@@ -1,0 +1,41 @@
+<?php
+//salt
+	define("SALT", "clickAffitti");
+
+// costanti per connesioni multiple
+	define("CONNESSIONE_DATI", 0);
+	define("CONNESSIONE_COMUNE", 1);
+
+	define("UPLOAD_URL", $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'affitti' . DIRECTORY_SEPARATOR . 'click-affitti' . DIRECTORY_SEPARATOR . 'upload');
+	define("DOWNLOAD_URL", DIRECTORY_SEPARATOR . 'affitti' . DIRECTORY_SEPARATOR . 'click-affitti' . DIRECTORY_SEPARATOR . 'upload');
+
+
+	/*CONFIGURAZIONE DB (TEST 8)*/
+	define("HOST", "");
+	define("PORT", "3306");
+	define("USER", "");
+	define("PWD", "");
+	define("SCHEMA", "");
+	define('CHARSET','latin1');
+
+	define("HOST1", "");
+	define("PORT1", "3306");
+	define("USER1", "");
+	define("PWD1", "");
+	define("SCHEMA1", "");
+	define('CHARSET1', 'latin1');
+
+
+
+//URL
+	define("BASE_URL", "http://localhost");
+
+
+//CONFIGURAZIONE SMTP
+	define("EMAIL_USE_SMTP", true);
+	define("EMAIL_SMTP_HOST", "smtp-relay.sendinblue.com");
+	define("EMAIL_SMTP_AUTH", true);
+	define("EMAIL_SMTP_USERNAME", "support@clicksrl.eu");
+	define("EMAIL_SMTP_PASSWORD", "0vNtV2IwUnxWD9hY");
+	define("EMAIL_SMTP_PORT", 587);
+	define("EMAIL_SMTP_ENCRYPTION", "");

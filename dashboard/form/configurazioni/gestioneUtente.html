@@ -1,0 +1,149 @@
+<title>Gestione utente</title>
+
+<div ng-controller="gestioneUtenteController" data-ng-init="init()">
+
+    <div id="containerUtenti" class="panel panel-custom border">
+
+        <div class="text-center" ng-class="{'backgroundLoaderPart' : visible, 'backgroundLoaderFull' : !visible}"
+             ng-show="!caricamentoCompletato">
+            <div class="containerLoader">
+                <div class="loader"></div>
+            </div>
+        </div>
+
+        <div class="panel-heading text-center panelHeaderSezioneCustom">
+            <div class="row padding0">
+                <span class="col-md-1 text-left">
+                    <button type="button" class="btn btn-sm pointer headerPageButton" title="Configurazioni"
+                            ng-click="indietro()">
+                        <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
+                    </button>
+                </span>
+                <span class="col-md-10 titoloSezione" ng-show="nuovoUtente">NUOVO UTENTE</span>
+                <span class="col-md-10 titoloSezione" ng-show="!nuovoUtente">MODIFICA UTENTE</span>
+                <span class="col-md-1 text-right">
+                    <button type="button" class="btn btn-sm pointer headerPageButton" title="Aggiorna pagina"
+                            ng-show="showRefresh" ng-click="aggiornaPagina()">
+                        <i class="fa fa-refresh fa-2x" aria-hidden="true"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+
+        <div id="panelUtenti" class="panelBodySezioneCustom maxHeightScrollY" ng-show="caricamentoCompletato">
+            <div id="containerIntestazione" class="panelHeaderSottoSezioneCustom">
+                <span>Dati Personali</span>
+            </div>
+            <div class="panelBodySottoSezioneCustom">
+
+                <div class="form-group row">
+                    <label for="_nome" class="col-md-1">Nome:</label>
+                    <div class="col-md-2 form-check form-check-inline">
+                        <input type="text" id="_nome" class="form-control input-sm" placeholder="nome"
+                               ng-model="utente.nome" ng-change="controllaDati()">
+                    </div>
+                    <label for="_cognome" class="col-md-1">Cognome:</label>
+                    <div class="col-md-2 form-check form-check-inline">
+                        <input type="text" id="_cognome" class="form-control input-sm" placeholder="cognome"
+                               ng-model="utente.cognome" ng-change="controllaDati()">
+                    </div>
+                    <div class="form-group form-inline">
+                        <label for="_livello" class="col-md-1">Livello:</label>
+                        <select id="_livello" class="col-md-4 form-control input-sm" ng-model="utente.tipo_utente">
+                            <option value="SU" ng-show="livello == 'SU'">SUPER USER</option>
+                            <option value="A" ng-show="livello == 'SU' || livello == 'A'">AMMINISTRATORE</option>
+                            <option value="U">UTENTE</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="_email" class="col-md-1">Email:</label>
+                    <div class="col-md-2 form-check form-check-inline">
+                        <input type="text" id="_email" class="form-control input-sm" placeholder="email"
+                               ng-model="utente.email" ng-change="controllaDati()">
+                    </div>
+                    <label for="_username" class="col-md-1">Username:</label>
+                    <div class="col-md-2 form-check form-check-inline">
+                        <input type="text" id="_username" class="form-control input-sm" placeholder="username"
+                               ng-model="utente.username" ng-change="controllaDati()"
+                               ng-disabled="!nuovoUtente">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PASSWORD -->
+            <div ng-show="utente.id != null">
+                <div class="panelHeaderSottoSezioneCustom">
+                    <span>Password</span>
+                    <a href="http://www.garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/1557184"
+                       target="_blank" title="Informazioni sicurezza" class="marginL10 inf">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div class="panelBodySottoSezioneCustom">
+                    <div class="form-group row" ng-show="!nuovoUtente">
+                        <label class="col-md-2">Scadenza password:</label>
+                        <span class="col-md-1">
+                            {{utente.data_scadenza | date : "dd/MM/yyyy"}}
+                        </span>
+                        <span class="col-md-1">
+                            <button class="btn btn-default" ng-click="showModificaPassword()">
+                                modifica
+                            </button>
+                        </span>
+                    </div>
+
+                    <div class="form-group row" ng-show="(modificaPassword && passwordGenerata != '') || nuovoUtente">
+                        <label class="col-md-2">Password Generata:</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control width100" ng-model="passwordGenerata" readonly/>
+                        </div>
+                    </div>
+
+                    <div ng-show="modificaPassword || nuovoUtente">
+                        <div class="form-group row">
+                            <label class="col-md-2" for="password">Nuova Password:</label>
+                            <div class="col-md-2">
+                                <input type="password" class="form-control width100"
+                                       ng-class="utente.password == '' ? 'requiredField' : ''" ng-model="utente.password"
+                                       ng-blur="verificaPassword(utente.password)" id="password"/>
+                            </div>
+
+                            <div class="col-md-2">
+                                <button class="btn btn-default" ng-click="generaPassword()">genera</button>
+                            </div>
+
+                            <div class="col-md-6 security{{resultPwd.advisor}}"><span
+                                    class="glyphicon glyphicon-alert security{{resultPwd.advisor}}"
+                                    aria-hidden="true"></span> &nbsp; {{resultPwd.description}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-2 text-right" for="password2">Conferma Password:</label>
+                            <div class="col-md-3">
+                                <input type="password" class="form-control width100"
+                                       ng-class="utente.confermaPassword == '' ? 'requiredField' : ''"
+                                       ng-model="utente.confermaPassword" id="password2">
+                            </div>
+                            <div class="alertText"
+                                 ng-if="utente.confermaPassword.length > 0 && (utente.password != utente.confermaPassword)">
+                                Le password non coincidono
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end PASSWORD -->
+
+            <div class="form-group row">
+                <button class="btn btn-success marginL10" ng-show="campiValidi" ng-click="salvaDati()">Salva</button>
+            </div>
+
+        </div>
+    </div>
+</div>

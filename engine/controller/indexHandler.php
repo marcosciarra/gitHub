@@ -16,16 +16,28 @@ function caricaDati($request)
     $result = array();
     try {
         $attribute = array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-        $pdo = new PDO(
-            'mysql:host=' . HOST . ':' . PORT . ';dbname=' . SCHEMA . ';charset=' . CHARSET,
-            USER,
-            PWD,
-            $attribute
-        );
+        if (PORT) {
+            $pdo = new PDO(
+                'mysql:host=' . HOST . ':' . PORT . ';dbname=' . SCHEMA . ';charset=' . CHARSET,
+                USER,
+                PWD,
+                $attribute
+            );
+        } else {
+            $pdo = new PDO(
+                'mysql:host=' . HOST . ';dbname=' . SCHEMA . ';charset=' . CHARSET,
+                USER,
+                PWD,
+                $attribute
+            );
+        }
         /*-------------------------------------------ELENCO TABELLE-------------------------------------------------------*/
         $query = 'SHOW TABLES';
-
-        $result['tabelle'] = $pdo->query($query)->fetchAll();
+        $result['tabelle'] = [];
+        foreach ($pdo->query($query)->fetchAll() as $app) {
+            $result['tabelle'][] = $app[0];
+        }
+//        $result['tabelle'] = $pdo->query($query)->fetchAll();
         $result['status'] = 'ok';
 
         return json_encode($result);

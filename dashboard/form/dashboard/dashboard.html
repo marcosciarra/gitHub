@@ -1,0 +1,82 @@
+<title>Dashboard Affitti</title>
+
+<div ng-controller="dashboardController" data-ng-init="init()">
+
+    <div id="dashboard" class="card">
+
+        <div class="card-header text-center panelHeaderSezioneCustom">
+            HOME PAGE
+        </div>
+
+        <!-- LOADER -->
+        <div class="text-center" ng-class="{'backgroundLoaderPart' : visible, 'backgroundLoaderFull' : !visible}"
+             ng-show="!caricamentoCompletato">
+            <div class="containerLoader">
+                <div class="loader"></div>
+            </div>
+        </div>
+        <!-- END LOADER -->
+
+        <div id="panelDatiCliente" class="card-block panelBodySezioneCustom" ng-show="caricamentoCompletato" style="min-height:70vh">
+            <div class="row">
+                <!-- box clienti -->
+                <div class="col-md-4">
+                    <div class="panel panel-info pointer" ng-click="includePage('clienti','clienti')">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3"
+                                     title="Clienti">
+                                    <i class="fa fa-users fa-5x"></i>
+                                </div>
+                                <div class="col-xs-6 text-center">
+                                    <div class="titolocontatore h4">Clienti</div>
+                                    <div class="huge">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END box clienti -->
+
+                <!-- box caricamento -->
+                <div class="col-md-4">
+                    <div class="panel panel-default pointer">
+                        <div class="panel-heading" ng-click="includePage('upload','upload')">
+                            <div class="row">
+                                <div class="col-xs-3"
+                                     title="Caricamento">
+                                    <i class="fa fa-upload fa-5x"></i>
+                                </div>
+                                <div class="col-xs-6 text-center">
+                                    <div class="titolocontatore h4">Upload Master</div>
+                                    <div class="huge">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END box caricamento -->
+
+                <!-- box rilasci -->
+                <div class="col-md-4">
+                    <div class="panel panel-primary pointer" ng-click="includePage('rilasci','rilasci')">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3"
+                                     title="Rilasci">
+                                    <i class="fa fa-copy fa-5x"></i>
+                                </div>
+                                <div class="col-xs-6 text-center">
+                                    <div class="titolocontatore h4">Rilasci</div>
+                                    <div class="huge">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END box rilasci -->
+            </div>
+        </div>
+    </div>
+</div>
+

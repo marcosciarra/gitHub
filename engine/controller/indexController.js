@@ -19,7 +19,10 @@ app.controller("indexController", ['$scope', "$http", function ($scope, $http) {
 
     $scope.engineTabelle = function (nomeTabella) {
         $http.post('./controller/indexHandler.php',
-            {'function': 'engineTabelle', 'nomeTabella': nomeTabella}
+            {
+                'function': 'engineTabelle',
+                'nomeTabella': nomeTabella
+            }
         ).then(function (data, status, headers, config) {
             if (data.data.status == 'ok') {
                 $scope.tabelle = data.data.tabelle;

@@ -1,0 +1,160 @@
+
+<title>Tipi iva</title>
+
+<div ng-controller="tipiIvaController" data-ng-init="init()">
+
+    <div id="containerTipiIva" class="panel panel-custom border">
+        <div class="panel-heading text-center panelHeaderSezioneCustom">
+            <div class="row padding0">
+                <span class="col-md-1 text-left">
+                    <button type="button" class="btn btn-sm pointer headerPageButton" title="Configurazioni"
+                            ng-click="indietro('configurazioni')">
+                        <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
+                    </button>
+                </span>
+                <span class="col-md-10 titoloSezione">TIPI IVA</span>
+                <span class="col-md-1 text-right">
+                    <button type="button" class="btn btn-sm pointer headerPageButton" title="Aggiorna pagina"
+                            ng-show="showRefresh" ng-click="aggiornaPagina()">
+                        <i class="fa fa-refresh fa-2x" aria-hidden="true"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="text-center" ng-class="{'backgroundLoaderPart' : visible, 'backgroundLoaderFull' : !visible}"
+             ng-show="!caricamentoCompletato">
+            <div class="containerLoader">
+                <div class="loader"></div>
+            </div>
+        </div>
+
+        <div id="panelTipiIva" class="panel"
+             ng-show="caricamentoCompletato">
+
+            <table class="table table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th class="col-xs-2">DESCRIZIONE</th>
+                    <th class="col-xs-1">ALIQUOTA</th>
+                    <th class="col-xs-1">COD.FATT.</th>
+                    <th class="col-xs-3">NORM. PERSONE FISICHE</th>
+                    <th class="col-xs-3">NORM. PERSONE NON FISICHE</th>
+                    <th class="col-xs-2 text-center">OPZIONI</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr ng-repeat="t in elencoTipiIva track by $index">
+                    <td>
+                        <!--
+                        <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-exclamation-triangle red" aria-hidden="true"
+                                       ng-show="t.descrizione.length > 10"></i>
+                                </span>
+                            <input type="text" class="col-md-12" placeholder="Nuovo tipo iva"
+                                   ng-model="t.descrizione">
+                        </div>
+                        -->
+                        <input type="text" class="form-control input-sm" placeholder="Nuovo tipo iva"
+                               ng-model="t.descrizione" ng-change="controllaCampiTipoIva(t)">
+                        <small ng-show="t.descrizione.length < 0 || t.descrizione.length > 10">
+                            Lunghezza massima 10 caratteri
+                        </small>
+                    </td>
+                    <td>
+                        <!--
+                        <div class="input-group">
+                            <input type="number" class="col-md-12"
+                                   ng-model="t.aliquota">
+                            <span class="input-group-addon">
+                                    <i class="fa fa-percent" aria-hidden="true"></i>
+                                </span>
+                        </div>
+                        -->
+                        <input type="number" class="form-control input-sm" min="0"
+                               ng-model="t.aliquota" ng-change="controllaCampiTipoIva(t)">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control input-sm" maxlength="2"
+                               ng-model="t.codice_fatturazione" ng-change="controllaCampiTipoIva(t)">
+                    </td>
+                    <td>
+                        <textarea class="form-control input-sm" rows="2" ng-model="t.normativa_pf"></textarea>
+                    </td>
+                    <td>
+                        <textarea class="form-control input-sm" rows="2" ng-model="t.normativa_pnf"></textarea>
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-sm" ng-click="salvaDati(t,false)"
+                                ng-show="controllaCampiTipoIva(t)">
+                            <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn-sm" ng-click="eliminaDati(t.id)"
+                                ng-show="livello == 'SU'">
+                            <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+
+                <tr ng-show="livello == 'SU'">
+                    <td>
+                        <!--
+                        <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-exclamation-triangle red" aria-hidden="true"
+                                       ng-show="newTipoIva.descrizione.length > 10"></i>
+                                </span>
+                            <input type="text" class="col-md-12" placeholder="Nuovo tipo iva"
+                                   ng-model="newTipoIva.descrizione">
+                        </div>
+                        -->
+                        <input type="text" class="form-control input-sm" placeholder="Nuovo tipo iva"
+                               ng-model="newTipoIva.descrizione" ng-change="controllaCampiTipoIva(newTipoIva)">
+                        <small ng-show="newTipoIva.descrizione.length > 10">
+                            Lunghezza massima 10 caratteri
+                        </small>
+                    </td>
+                    <td>
+                        <!--
+                        <div class="input-group">
+                            <input type="number" class="col-md-12"
+                                   ng-model="newTipoIva.aliquota"
+                                   ng-change="controllaPercentuale(newTipoIva.aliquota)">
+                            <span class="input-group-addon">
+                                    <i class="fa fa-percent" aria-hidden="true"></i>
+                                </span>
+                        </div>
+                        -->
+                        <input type="number" class="form-control input-sm" min="0" ng-model="newTipoIva.aliquota"
+                               ng-change="controllaCampiTipoIva(newTipoIva)">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control input-sm" maxlength="2"
+                               ng-model="newTipoIva.codice_fatturazione" ng-change="controllaCampiTipoIva(newTipoIva)">
+                    </td>
+                    <td>
+                        <textarea class="form-control input-sm" ng-model="newTipoIva.normativa_pf"></textarea>
+                        <small>
+                            Lunghezza massima 1000 caratteri
+                        </small>
+                    </td>
+                    <td>
+                        <textarea class="form-control input-sm" ng-model="newTipoIva.normativa_pnf"></textarea>
+                        <small>
+                            Lunghezza massima 1000 caratteri
+                        </small>
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-sm"
+                                ng-show="controllaCampiTipoIva(newTipoIva)"
+                                ng-click="salvaDati(newTipoIva,true)">
+                            <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

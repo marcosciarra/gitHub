@@ -9,20 +9,19 @@
 define('SELECTNAMESPACE', 'Affitti');
 
 
-/*-------AFFITTI TEST---------*/
+/*-------AFFITTI TEST---------
 define("HOST", "172.16.0.184");
 define("PORT", "33026");
 define("USER", "root");
 define("PWD", 'lwj1yTRo$CazMvJsA');
-define("SCHEMA", "test1");
-define('CHARSET', 'latin1');
-
-
-/*-------LOCALE---------------
-define("HOST", "172.18.0.2");
-//define("PORT", "3306");
-define("USER", "root");
-define("PWD", 'Sciarra82');
-define("SCHEMA", "test1");
+define("SCHEMA", "dashboard");
 define('CHARSET', 'latin1');
 */
+
+/*-------LOCALE---------------*/
+define("HOST", "MySql");
+define("PORT", "3306");
+define("USER", "root");
+define("PWD", 'Sciarra82');
+define("SCHEMA", "dashboard");
+define('CHARSET', 'latin1');

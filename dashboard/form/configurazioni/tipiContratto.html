@@ -1,0 +1,174 @@
+
+<title>Tipi contratto</title>
+
+<div ng-controller="tipiContrattoController" data-ng-init="init()">
+
+    <div id="containerTipiContratto" class="panel panel-custom border">
+        <div class="panel-heading text-center panelHeaderSezioneCustom">
+            <div class="row padding0">
+                <span class="col-md-1 text-left">
+                    <button type="button" class="btn btn-sm pointer headerPageButton" title="Configurazioni"
+                                    ng-click="indietro('configurazioni')">
+                        <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
+                    </button>
+                    <!--
+                    <button class="btn btn-sm" ng-show="showIndietro" ng-click="indietro()">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    </button>
+                    -->
+                </span>
+                <span class="col-md-10 titoloSezione">TIPI CONTRATTO</span>
+                <span class="col-md-1 text-right">
+                    <button type="button" class="btn btn-sm pointer headerPageButton" title="Aggiorna pagina"
+                                     ng-show="showRefresh" ng-click="aggiornaPagina()">
+                        <i class="fa fa-refresh fa-2x" aria-hidden="true"></i>
+                    </button>
+                </span>
+                <!--
+
+                    <button class="btn btn-sm" ng-show="showRefresh" ng-click="aggiornaPagina()">
+                        <i class="fa fa-refresh" aria-hidden="true"></i>
+                    </button>
+                </span>
+                -->
+            </div>
+        </div>
+        <div class="text-center" ng-class="{'backgroundLoaderPart' : visible, 'backgroundLoaderFull' : !visible}"
+             ng-show="!caricamentoCompletato">
+            <div class="containerLoader">
+                <div class="loader"></div>
+            </div>
+        </div>
+
+        <div id="panelTipiContratto" class="panel"
+            ng-show="caricamentoCompletato">
+            <table class="table table-condensed table-hover margin0">
+                <thead>
+                    <tr>
+                        <th class="col-xs-3">DESCRIZIONE</th>
+                        <th class="col-xs-1">TEMPO</th>
+                        <th class="col-xs-3">RINNOVI E SUCCESSIVI RINNOVI</th>
+                        <th class="col-xs-2">PREAVVISI (mesi)</th>
+                        <th class="col-xs-2">ISTAT</th>
+                        <th class="col-xs-1 text-center">OPZIONI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="t in elencoTipiContratto track by $index">
+                        <td>
+                            <input type="text" class="col-md-12" placeholder="Nuovo tipo iva"
+                                   maxlength="45" ng-model="t.descrizione"
+                                   ng-change="controllaCampiTipoContratto(t)">
+                        </td>
+                        <td>
+                            <select class="col-md-12 form-control input-sm" ng-model="t.tipo_periodo" ng-change="modificaTempo(t)">
+                                <option value="A">Anni</option>
+                                <option value="M">Mesi</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" class="col-md-3" placeholder="A" min="0"
+                                   ng-model="t.primo_rinnovo" ng-change="controllaCampiTipoContratto(t)">
+                            <span class="col-md-1 paddingL5" style="display:inline;">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </span>
+                            <input type="number" class="col-md-3" placeholder="A" min="0"
+                                   ng-model="t.secondo_rinnovo" ng-change="controllaCampiTipoContratto(t)" ng-disabled="t.tipo_periodo=='M'">
+                            <span class="col-md-1 paddingL5" style="display:inline;">
+                                <i class="fa fa-retweet" aria-hidden="true"></i>
+                            </span>
+                            <input type="number" class="col-md-3" placeholder="A" min="0" ng-disabled="t.tipo_periodo=='M'"
+                                   ng-model="t.rinnovo_successivo" ng-change="controllaCampiTipoContratto(t)">
+                        </td>
+                        <td>
+                            <input type="number" class="col-md-4" placeholder="M" min="0"
+                                   ng-model="t.preavviso_locatore" ng-change="controllaCampiTipoContratto(t)">
+                            <span class="col-md-1 marginR5" style="display:inline;">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </span>
+                            <input type="number" class="col-md-4" placeholder="M" min="0"
+                                   ng-model="t.preavviso_conduttore" ng-change="controllaCampiTipoContratto(t)">
+                        </td>
+                        <td>
+                            <select class="col-md-12 form-control input-sm" ng-model="t.istat"
+                                    ng-change="controllaCampiTipoContratto(t)">
+                                <option value="A-100">ABITATIVO 100%</option>
+                                <option value="A-75">ABITATIVO 75%</option>
+                                <option value="A-NI">ABITATIVO - NO ISTAT</option>
+                                <option value="N-100">NON ABITATIVO 100%</option>
+                                <option value="N-75">NON ABITATIVO 75%</option>
+                                <option value="N-NI">NON ABITATIVO - NO ISTAT</option>
+                            </select>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-sm" ng-click="salvaDati(t,false)"
+                                    ng-show="controllaCampiTipoContratto(t)">
+                                <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-sm" ng-click="eliminaDati(t.id)">
+                                <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- NUOVO CONTRATTO -->
+                    <tr>
+                        <td>
+                            <input type="text" class="col-md-12" placeholder="Nuovo tipo contratto"
+                                   maxlength="45" ng-model="newTipoContratto.descrizione"
+                                   ng-change="controllaCampiTipoContratto(newTipoContratto)">
+                        </td>
+                        <td>
+                            <select class="col-md-12 form-control input-sm" ng-model="newTipoContratto.tipo_periodo" ng-change="modificaTempo(newTipoContratto)">
+                                <option value="A">Anni</option>
+                                <option value="M">Mesi</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" class="col-md-3" placeholder="A-M" min="0"
+                                   ng-model="newTipoContratto.primo_rinnovo" ng-change="controllaCampiTipoContratto(newTipoContratto)">
+                            <span class="col-md-1 paddingL5" style="display:inline;">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </span>
+                            <input type="number" class="col-md-3" placeholder="A-M" min="0" ng-disabled="newTipoContratto.tipo_periodo=='M'"
+                                   ng-model="newTipoContratto.secondo_rinnovo" ng-change="controllaCampiTipoContratto(newTipoContratto)">
+                            <span class="col-md-1 paddingL5" style="display:inline;">
+                                <i class="fa fa-retweet" aria-hidden="true"></i>
+                            </span>
+                            <input type="number" class="col-md-3" placeholder="A-M" min="0" ng-disabled="newTipoContratto.tipo_periodo=='M'"
+                                   ng-model="newTipoContratto.rinnovo_successivo" ng-change="controllaCampiTipoContratto(newTipoContratto)">
+                        </td>
+                        <td>
+                            <input type="number" class="col-md-4" placeholder="M" min="0"
+                                   ng-model="newTipoContratto.preavviso_locatore"
+                                   ng-change="controllaCampiTipoContratto(newTipoContratto)">
+                            <span class="col-md-1 marginR5" style="display:inline;">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </span>
+                            <input type="number" class="col-md-4" placeholder="M" min="0"
+                                   ng-model="newTipoContratto.preavviso_conduttore"
+                                   ng-change="controllaCampiTipoContratto(newTipoContratto)">
+                        </td>
+                        <td>
+                            <select class="col-md-12 form-control input-sm" ng-model="newTipoContratto.istat"
+                                    ng-change="controllaCampiTipoContratto(newTipoContratto)">
+                                <option value="A-100">ABITATIVO 100%</option>
+                                <option value="A-75">ABITATIVO 75%</option>
+                                <option value="A-0">ABITATIVO - NO ISTAT</option>
+                                <option value="N-100">NON ABITATIVO 100%</option>
+                                <option value="N-75">NON ABITATIVO 75%</option>
+                                <option value="N-0">NON ABITATIVO - NO ISTAT</option>
+                            </select>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-sm" ng-click="salvaDati(newTipoContratto,true)"
+                                    ng-show="controllaCampiTipoContratto(newTipoContratto)">
+                                <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
