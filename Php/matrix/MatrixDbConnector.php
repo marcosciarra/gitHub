@@ -151,8 +151,8 @@ class MatrixDbConnector
      *
      * @param $arrayValori
      *
-     * @throws \Drakkar\Exception\DrakkarConnectionException
-     * @throws \Drakkar\Exception\DrakkarException
+     * @throws \Drakkar\Exception\MatrixConnectionException
+     * @throws \Drakkar\Exception\MatrixException
      */
     public function insertForcedKeyArray ($strTabella, $arrayKey) {
         return $this->conn->insertForcedKeyArray($strTabella, $arrayKey);
