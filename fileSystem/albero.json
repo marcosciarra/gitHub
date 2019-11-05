@@ -1,0 +1,63 @@
+[
+  {
+    "title": "immobili",
+    "nodes": [
+      {
+        "id": 11,
+        "title": "Primo immobile",
+        "type": "folder",
+        "nodes": [
+          {
+            "id": 111,
+            "title": "planimetria",
+            "type": "file",
+            "nodes": []
+          },
+          {
+            "id": 222,
+            "title": "certificato energetico",
+            "type": "file",
+            "nodes": []
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "node1.2",
+        "type": "file",
+        "nodes": []
+      }
+    ]
+  },
+  {
+    "title": "anagrafiche",
+    "nodes": [
+      {
+        "id": 11,
+        "title": "node1.1",
+        "nodes": [
+          {
+            "id": 111,
+            "title": "node1.1.1",
+            "nodes": []
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "node1.2",
+        "nodes": []
+      }
+    ]
+  },
+  {
+    "title": "contratti",
+    "nodes": [
+      {
+        "id": 31,
+        "title": "node3.1",
+        "nodes": []
+      }
+    ]
+  }
+]
