@@ -88,3 +88,64 @@ function calcola() {
     return result;
 
 }
+
+
+//PASSAGGIO DI FUNZIONE AD ALTRA FUNZIONE
+//Cre funzione che cicla gli elementi dell'oggetto e li stampa
+function outPutObject(obj) {
+    for (var i in obj) {
+        console.logobj([i]);
+    }
+}
+//Funzione che dato un oggetto esegue la funzione passata come variabile
+function processObject(myOject, callBack) {
+    callBack(myObject);
+    //Creo un metodo all'interno della funzione
+    callBack.testFunction = function () {
+        console.log('Chiamata a testFunction!');
+    }
+}
+//Oggetto che dovrò ciclare
+var objTest = { name: 'Test', lastName: 'Test2', age: 33 };
+//Lancio la funzione passando l'oggetto objTest ed eseguo la funzione outPutObject
+processObject(objTest, outPutObject);
+//Eseguo il metodo che ho dichiarato nella funzione al quale ho passato la funzione
+outPutObject.testFunction();
+
+//FUNZIONI COME ESPRESSIONI
+var funcName = function () {
+    console.log('funzione')
+}
+//Chiamo la funzione chiamando la variabile
+funcName();
+
+//FUNZIONI INVOCATE IMMEDIATAMENTE
+//avvolgendo la funzione tra parentesi ed aggiungendo le tonde finali
+//la funzione viene eseguita una sola volta all'avvio del file 
+(function iife() {
+    console.log('Teest');
+})();
+
+//FAT ARROW FUNCTION
+var test = function (arg1, arg2) {
+    return arg1 + arg2;
+}
+//Posso scrivere la funzione sopra in questo modo
+//Come in questo caso, se devo eseguire solo una istruzione posso omettere return
+var test2 = (arg1, arg2) => {
+    return arg1 + arg2;
+};
+
+//PARAMETRI DI DEFAULT
+//Dichiaro funzione con valori predefiniti
+function isMaggiore(param1 = 0, param2 = 0) {
+    return param1 > param2;
+}
+//RES parameter
+//In questo modo chiamo la funzione mettendo :
+//operazione => operazione che voglio fare
+//...numeri => il RESTo dei parametri e JS li assegna alla var numeri come un array
+function stampaParametri(operazione, ...numeri) {
+    console.log(numeri);
+}
+
